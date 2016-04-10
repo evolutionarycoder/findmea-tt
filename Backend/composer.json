@@ -1,0 +1,17 @@
+{
+  "name"       : "prince/backend",
+  "license"    : "",
+  "description": "Backend for Find Me A... Application",
+  "authors"    : [
+    {
+      "name" : "Daniel Prince",
+      "email": "programmer96@hotmail.com"
+    }
+  ],
+  "require"    : {},
+  "autoload"   : {
+    "psr-4": {
+      "Backend\\": "./"
+    }
+  }
+}
