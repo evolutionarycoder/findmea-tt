@@ -11,7 +11,7 @@
             "host"     => "localhost",
             "user"     => "root",
             "password" => "prince",
-            "database" => "findmea"
+            "database" => "findmea "
         ];
     } else {
         return [
