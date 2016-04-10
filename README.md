@@ -4,12 +4,12 @@
 <h4>Install</h4>
 <p>config.php - should be placed in the "Backend" root</p>
 <pre>
- <?php
+ &lt;?php
     return [
-        "host"     => "<MySQL Host>",
-        "user"     => "<MySQL User>",
-        "password" => "<MySQL Password>",
-        "database" => "<MySQL Database>"
+        "host"     => "&lt;MySQL Host&gt;",
+        "user"     => "&lt;MySQL User&gt;",
+        "password" => "&lt;MySQL Password&gt;",
+        "database" => "&lt;MySQL Database&gt;"
     ];
- ?>
+ ?&gt;
 </pre>
