@@ -239,18 +239,17 @@
             $query  = "select * from {$table} WHERE id > {$start} {$where} LIMIT 20;";
             $result = mysqli_query($this->connection, $query);
 
+            $data = [];
             if (mysqli_num_rows($result) > 0) {
-                $data = [];
                 while ($row = mysqli_fetch_object($result)) {
                     $this->stripAndDecode($row);
                     $obj    = $this->createObjFromRow($row);
                     $data[] = $obj;
                 }
 
-                return $data;
             }
 
-            return false;
+            return $data;
         }
 
         protected function readByAmountDesc($table, $last, $where = "") {
@@ -260,18 +259,16 @@
             }
             $result = mysqli_query($this->connection, $query);
 
+            $data = [];
             if (mysqli_num_rows($result) > 0) {
-                $data = [];
                 while ($row = mysqli_fetch_object($result)) {
                     $this->stripAndDecode($row);
                     $obj    = $this->createObjFromRow($row);
                     $data[] = $obj;
                 }
-
-                return $data;
             }
 
-            return false;
+            return $data;
         }
 
         /**
