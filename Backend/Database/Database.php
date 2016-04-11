@@ -61,12 +61,12 @@
          * @param bool|\mysqli $mysqli
          */
         public function __construct($mysqli = false) {
-            $config             = include "../config.php";
-            $this->host         = $config["host"];
-            $this->user         = $config["user"];
-            $this->pass         = $config["password"];
-            $this->db           = $config["database"];
-            
+            $config     = include "../config.php";
+            $this->host = $config["host"];
+            $this->user = $config["user"];
+            $this->pass = $config["password"];
+            $this->db   = $config["database"];
+
             $this->jsonLocation = $_SERVER["DOCUMENT_ROOT"];
 
             if ($mysqli !== false) {
@@ -137,7 +137,7 @@
          */
         public function decode($obj) {
             foreach ($obj as $key => $val) {
-                if (!is_object($val)) {
+                if (!is_object($val) && !is_array($val)) {
                     $obj->$key = html_entity_decode($val, ENT_QUOTES);
                 }
             }
@@ -448,7 +448,9 @@
          */
         protected function clean($obj) {
             foreach ($obj as $key => $val) {
-                $obj->$key = htmlentities(mysqli_real_escape_string($this->connection, $val), ENT_QUOTES);
+                if (!is_object($val) && !is_array($val)) {
+                    $obj->$key = htmlentities(mysqli_real_escape_string($this->connection, $val), ENT_QUOTES);
+                }
             }
         }
 
