@@ -48,7 +48,7 @@
          * @param Comment[] $comments      Comments associated with the location
          * @param Tag[]     $tags          Tags on a location
          */
-        public function __construct($id = null, $userId = null, $totalLikes = null, $totalComments = null, $lat = null, $lng = null, $area = null, $name = null, $desc = null, $phone = null, $website = null, array $comments = null, array $tags = null) {
+        public function __construct($id = null, $userId = null, $totalLikes = null, $totalComments = null, $lat = null, $lng = null, $area = null, $name = null, $desc = null, $phone = null, $website = null, $comments = null, $tags = null) {
             $this->id            = $id;
             $this->userId        = $userId;
             $this->totalLikes    = $totalLikes;
