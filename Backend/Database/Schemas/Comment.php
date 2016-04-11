@@ -28,7 +28,7 @@
          * @param int    $userId     The user who commented
          * @param string $comment    The comment
          */
-        public function __construct($id, $locationId, $userId, $comment) {
+        public function __construct($id = null, $locationId = null, $userId = null, $comment = null) {
             $this->id         = $id;
             $this->locationId = $locationId;
             $this->userId     = $userId;

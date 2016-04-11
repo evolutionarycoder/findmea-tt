@@ -19,7 +19,7 @@
          * @param string $name Name of the Account Type
          * @param string $slug Shortened name for the Account Type
          */
-        public function __construct($id, $name, $slug) {
+        public function __construct($id = null, $name = null, $slug = null) {
             $this->id   = $id;
             $this->name = $name;
             $this->slug = $slug;
