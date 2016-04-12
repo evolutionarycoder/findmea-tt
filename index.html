@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Find Me A... V 1.0.0</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- Animate.css -->
+        <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
+
+        <!-- Le styles -->
+        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+
+        <!--  <link rel="stylesheet" href="assets/css/style.css"> -->
+        <link rel="stylesheet" href="assets/css/loader-style.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+        <link rel="stylesheet" href="assets/css/signin.css">
+
+        <!--Button Styles-->
+        <link rel="stylesheet" href="assets/js/button/ladda/ladda.min.css">
+
+        <!-- Extra Pages -->
+        <link rel="stylesheet" href="assets/css/extra-pages.css">
+
+        <!-- Wizard -->
+        <link rel="stylesheet" href="assets/js/wizard/css/jquery.steps.css">
+        <link type="text/css" rel="stylesheet" href="assets/js/wizard/jquery.stepy.css"/>
+        <link href="assets/js/tabs/acc-wizard.min.css" rel="stylesheet">
+
+        <!-- PNotify -->
+        <link rel="stylesheet" href="assets/css/pnotify.custom.min.css">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/minus.png">
+
+        <style>
+            body {
+                overflow : hidden;
+            }
+
+
+            /* 1001 max width*/
+            .form-horizontal .control-label {
+                text-align : left;
+            }
+
+            .large-screens {
+                display : none;
+            }
+
+            #wizard_vertical .content.clearfix {
+                overflow-y : auto;
+            }
+
+            @media (min-width : 1002px) {
+                .login-wrapper.create > .row > div {
+                    width       : 100%;
+                    margin-left : 0;
+                }
+
+                .small-screens {
+                    display : none;
+                }
+
+                .large-screens {
+                    display : block;
+                }
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <!-- Preloader -->
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        <div class="container">
+
+
+            <div class="animated login-wrapper login">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="logo-login">
+                            <h1>Find Me A...
+                                <span>beta</span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="account-box">
+
+                            <form role="form">
+                                <div class="form-group">
+                                    <a href="#" class="pull-right label-forgot">Forgot email?</a>
+                                    <label for="inputUsernameEmail">Username or email</label>
+                                    <input type="text" id="inputUsernameEmail" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <a href="#" class="pull-right label-forgot">Forgot password?</a>
+                                    <label for="inputPassword">Password</label>
+                                    <input type="password" id="inputPassword" class="form-control">
+                                </div>
+                                <div class="checkbox pull-left">
+                                    <label>
+                                        <input type="checkbox">Remember me</label>
+                                </div>
+                                <button data-style="zoom-in" class="btn btn btn-primary ladda-button pull-right"
+                                        type="submit">
+                                    Log In
+                                </button>
+                            </form>
+                            <a class="forgotLnk" href="index.html"></a>
+                            <div class="or-box">
+                                <center><span class="text-center login-with">Login or <b><a href="#" class="create-new-account">Sign Up</a></b></span></center>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 row-block">
+                                    <a href="#" data-style="zoom-in"
+                                       class="create-new-account btn btn-primary btn-block">Create
+                                        New Account</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="animated hide login-wrapper create">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="logo-login">
+                            <h1>Find Me A...
+                                <span>beta</span>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+
+                        <div class="account-box">
+
+                            <div class="body-nest small-screens" id="horizontal">
+                                <div class="form_center">
+                                    <form role="form" class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-sm-2 control-label" for="fname">First
+                                                Name</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" placeholder="First Name" id="fname"
+                                                       class="form-control">
+                                                <p data-error="fname" class="help-block text-danger">Example block-level
+                                                    help text here.</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-sm-2 control-label" for="lname">Last Name</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" placeholder="Last Name" id="lname"
+                                                       class="form-control">
+                                                <p data-error="lname" class="help-block text-danger">Example block-level
+                                                    help text here.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-sm-2 control-label" for="email">Email</label>
+                                            <div class="col-lg-10">
+                                                <input type="email" placeholder="example@example.com" id="email"
+                                                       class="form-control">
+                                                <p data-error="email" class="help-block text-danger">Example block-level
+                                                    help text here.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-sm-2 control-label"
+                                                   for="password">Password</label>
+                                            <div class="col-lg-10">
+                                                <input type="password" id="password" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-sm-2 control-label" for="rpassword">Retype
+                                                Password</label>
+                                            <div class="col-lg-10">
+                                                <input type="password" id="rpassword" class="form-control">
+                                                <p data-error="rpassword" class="help-block text-danger">Example
+                                                    block-level help text here.</p>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-lg-offset-2 col-lg-10">
+                                                <button class="btn btn-danger" type="submit">Sign Up</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <div class="body-nest large-screens" id="vertical">
+
+                                <div id="wizard_vertical">
+
+                                    <h2>Type</h2>
+                                    <section>
+                                        <div class="row">
+
+                                            <div class="col-sm-6">
+                                                <div class="plan">
+                                                    <h3 class="plan-title">Personal</h3>
+                                                    <p>Average User</p>
+                                                    <a href="#" class="plan-button">Choose Plan</a>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <div class="plan">
+                                                    <h3 class="plan-title">Business</h3>
+                                                    <p>Business User</p>
+                                                    <a href="#" class="plan-button">Choose Plan</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+
+
+                                    <h2>First Step</h2>
+                                    <section>
+                                        <div class="form_center">
+
+                                            <form role="form" class="form-horizontal">
+
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 col-sm-2 control-label" for="">First
+                                                        Name</label>
+                                                    <div class="col-lg-10">
+                                                        <input type="text" placeholder="First Name" id=""
+                                                               class="form-control">
+                                                        <p data-error="fname" class="help-block text-danger">Example
+                                                            block-level
+                                                            help text here.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 col-sm-2 control-label" for="">Last
+                                                        Name</label>
+                                                    <div class="col-lg-10">
+                                                        <input type="text" placeholder="Last Name" id=""
+                                                               class="form-control">
+                                                        <p data-error="lname" class="help-block text-danger">Example
+                                                            block-level
+                                                            help text here.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 col-sm-2 control-label" for="photo">Profile Photo</label>
+                                                    <div class="col-lg-10">
+                                                        <input type="file" placeholder="Last Name" id="photo"
+                                                               class="form-control">
+                                                        <p data-error="lname" class="help-block text-danger">Example
+                                                            block-level
+                                                            help text here.</p>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </section>
+
+                                    <h2>Account</h2>
+                                    <section>
+                                        <form role="form" class="form-horizontal">
+
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-sm-2 control-label" for="">Email</label>
+                                                <div class="col-lg-10">
+                                                    <input type="email" placeholder="example@example.com"
+                                                           class="form-control">
+                                                    <p data-error="fname" class="help-block text-danger">Example
+                                                        block-level
+                                                        help text here.</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-sm-2 control-label" for="">Password</label>
+                                                <div class="col-lg-10">
+                                                    <input type="password"
+                                                           class="form-control">
+                                                    <p data-error="lname" class="help-block text-danger">Example
+                                                        block-level
+                                                        help text here.</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-sm-2 control-label" for="photo">Retype
+                                                    Password</label>
+                                                <div class="col-lg-10">
+                                                    <input type="password" placeholder="Last Name"
+                                                           class="form-control">
+                                                    <p data-error="lname" class="help-block text-danger">Example
+                                                        block-level
+                                                        help text here.</p>
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+                                    </section>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="text-align:center;margin:0 auto;">
+                <h6 style="color:#FFF;">Created by Daniel M. Prince 2016</h6>
+            </div>
+
+        </div>
+        <div id="test1" class="gmap3"></div>
+
+
+        <!--  END OF PAPER WRAP -->
+
+
+        <!-- MAIN EFFECT -->
+        <script type="text/javascript" src="assets/js/preloader.js"></script>
+        <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+        <script type="text/javascript" src="assets/js/app.js"></script>
+        <script type="text/javascript" src="assets/js/load.js"></script>
+        <script type="text/javascript" src="assets/js/main.js"></script>
+
+        <!-- Button Styles -->
+        <script src="assets/js/button/ladda/spin.min.js"></script>
+        <script src="assets/js/button/ladda/ladda.min.js"></script>
+        <script type='text/javascript' src='assets/js/button/progressbutton.jquery.js'></script>
+
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <script type="text/javascript" src="assets/js/map/gmap3.js"></script>
+        <script type="text/javascript">
+            $(function () {
+
+                $("#test1").gmap3({
+                    marker: {
+                        latLng : [10.536421, -61.311951],
+                        options: {
+                            draggable: true
+                        },
+                        events : {
+                            dragend: function (marker) {
+                                $(this).gmap3({
+                                    getaddress: {
+                                        latLng  : marker.getPosition(),
+                                        callback: function (results) {
+                                            var map        = $(this).gmap3("get"),
+                                                infowindow = $(this).gmap3({
+                                                    get: "infowindow"
+                                                }),
+                                                content    = results && results[1] ? results && results[1].formatted_address : "no address";
+                                            if (infowindow) {
+                                                infowindow.open(map, marker);
+                                                infowindow.setContent(content);
+                                            } else {
+                                                $(this).gmap3({
+                                                    infowindow: {
+                                                        anchor : marker,
+                                                        options: {
+                                                            content: content
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    },
+                    map   : {
+                        options: {
+                            zoom: 11
+                        }
+                    }
+                });
+
+            });
+        </script>
+
+
+        <!-- Wizard -->
+        <script src="assets/js/wizard/lib/jquery.cookie-1.3.1.js"></script>
+        <script src="assets/js/wizard/build/jquery.steps.js"></script>
+        <script type="text/javascript" src="assets/js/wizard/jquery.stepy.js"></script>
+
+        <!--Notifications-->
+        <!-- PLUG IN -->
+        <script type="text/javascript" src="assets/js/pnotify/pnotify.custom.min.js"></script>
+
+        <!-- Notification -->
+        <script type="text/javascript" src="js/classes/Notify.js"></script>
+
+        <!-- Page Script -->
+        <script src="js/login.js"></script>
+    </body>
+
+</html>
