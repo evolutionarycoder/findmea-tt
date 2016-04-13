@@ -27,6 +27,12 @@
 
         }
 
+        public static function isLoggedIn() {
+            $userid = $_SESSION[self::USER_ID];
+
+            return isset($userid);
+        }
+
         /**
          * @param  string      $email           Users Email
          * @param  string      $password        Users Password
@@ -38,14 +44,13 @@
             $table  = new Users($mysqlConnection);
             $result = $table->getUser($email, $password);
             if (is_object($result)) {
-                $root = $_SERVER['DOCUMENT_ROOT'];
                 self::USER_ID($result->getId());
                 self::ACCOUNT_TYPE($result->getAccountTypeId());
                 self::FNAME($result->getFname());
                 self::LNAME($result->getLname());
                 self::EMAIL($result->getEmail());
                 self::FOLDER_PREFIX($result->getFolderPrefix());
-                self::PHOTO($root . $result->getPhoto());
+                self::PHOTO($result->getPhoto());
 
                 return true;
             }
@@ -66,6 +71,14 @@
             }
 
             return self::getSession(self::USER_ID);
+        }
+
+        private function setSession($key, $value) {
+            $_SESSION[$key] = $value;
+        }
+
+        private function getSession($key) {
+            return $_SESSION[$key];
         }
 
         /**
@@ -113,7 +126,6 @@
             return self::getSession(self::LNAME);
         }
 
-
         /**
          * @param string $value
          *
@@ -128,7 +140,6 @@
 
             return self::getSession(self::EMAIl);
         }
-
 
         /**
          * @param string $value
@@ -145,7 +156,6 @@
             return self::getSession(self::FOLDER_PREFIX);
         }
 
-
         /**
          * @param string $value
          *
@@ -159,15 +169,6 @@
             }
 
             return self::getSession(self::PHOTO);
-        }
-
-
-        private function setSession($key, $value) {
-            $_SESSION[$key] = $value;
-        }
-
-        private function getSession($key) {
-            return $_SESSION[$key];
         }
 
     }
