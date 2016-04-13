@@ -7,8 +7,14 @@
 
 
     Manage.prototype = {
-        create: function (data, cb) {
+        create : function (data, cb) {
             data.type = "create";
+            if (!data) {
+                throw new Error('No data given');
+            }
+            $.post(this.file, data, cb);
+        },
+        request: function (data, cb) {
             if (!data) {
                 throw new Error('No data given');
             }
