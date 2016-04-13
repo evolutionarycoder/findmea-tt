@@ -13,7 +13,7 @@
         /**
          * @var int
          */
-        public $id, $userId, $totalLikes, $totalComments;
+        public $id, $userId, $businessId, $totalLikes, $totalComments;
 
         /**
          * @var string
@@ -36,6 +36,7 @@
          *
          * @param int       $id            ID of the row in table
          * @param int       $userId        User the location belongs to
+         * @param int       $businessId
          * @param int       $totalLikes    Total likes on the location
          * @param int       $totalComments Total comments on the location
          * @param string    $lat           Latitude of the location
@@ -48,9 +49,10 @@
          * @param Comment[] $comments      Comments associated with the location
          * @param Tag[]     $tags          Tags on a location
          */
-        public function __construct($id = null, $userId = null, $totalLikes = null, $totalComments = null, $lat = null, $lng = null, $area = null, $name = null, $desc = null, $phone = null, $website = null, $comments = null, $tags = null) {
+        public function __construct($id = null, $userId = null, $businessId = null, $totalLikes = null, $totalComments = null, $lat = null, $lng = null, $area = null, $name = null, $desc = null, $phone = null, $website = null, $comments = null, $tags = null) {
             $this->id            = $id;
             $this->userId        = $userId;
+            $this->businessId    = $businessId;
             $this->totalLikes    = $totalLikes;
             $this->totalComments = $totalComments;
             $this->lat           = $lat;
@@ -92,6 +94,22 @@
         public function setUserId($userId) {
             $this->userId = $userId;
         }
+
+        /**
+         * @return int
+         */
+        public function getBusinessId() {
+            return $this->businessId;
+        }
+
+        /**
+         * @param int $businessId
+         */
+        public function setBusinessId($businessId) {
+            $this->businessId = $businessId;
+        }
+
+        
 
         /**
          * @return int
