@@ -18,7 +18,7 @@
         /**
          * @var string
          */
-        public $accountTypeName, $accountTypeSlug, $fname, $lname, $email, $password, $photo;
+        public $accountTypeName, $accountTypeSlug, $fname, $lname, $email, $password, $folderPrefix, $photo;
 
         /**
          * User constructor.
@@ -31,9 +31,10 @@
          * @param string $lname           Users last name
          * @param string $email           User email
          * @param string $password        Users Password
+         * @param string $folderPrefix    Prefix for this users folder
          * @param string $photo           User photo location
          */
-        public function __construct($id = null, $accountTypeId = null, $accountTypeName = null, $accountTypeSlug = null, $fname = null, $lname = null, $email = null, $password = null, $photo = "/system/imgs/default_profile.png") {
+        public function __construct($id = null, $accountTypeId = null, $accountTypeName = null, $accountTypeSlug = null, $fname = null, $lname = null, $email = null, $password = null, $folderPrefix, $photo = "/system/imgs/default_profile.png") {
             $this->id              = $id;
             $this->accountTypeId   = $accountTypeId;
             $this->accountTypeName = $accountTypeName;
@@ -42,6 +43,7 @@
             $this->lname           = $lname;
             $this->email           = $email;
             $this->password        = $password;
+            $this->folderPrefix    = $folderPrefix;
             $this->photo           = $photo;
         }
 
@@ -157,6 +159,22 @@
         public function setPassword($password) {
             $this->password = $password;
         }
+
+        /**
+         * @return string
+         */
+        public function getFolderPrefix() {
+            return $this->folderPrefix;
+        }
+
+        /**
+         * @param string $folderPrefix
+         */
+        public function setFolderPrefix($folderPrefix) {
+            $this->folderPrefix = $folderPrefix;
+        }
+
+        
 
         /**
          * @return string
