@@ -12,8 +12,8 @@
     class Response {
         const STATUS_OK   = "200";
         const STATUS_FAIL = "100";
-        const FAIL_TEXT = "An error occurred";
-        const OK_TEXT = "Success";
+        const FAIL_TEXT   = "An error occurred";
+        const OK_TEXT     = "Success";
 
         public $status;
         public $text;
@@ -29,6 +29,10 @@
             $this->text   = $text;
         }
 
+        public function allGood() {
+            $this->setStatus(self::STATUS_OK);
+            $this->setText(self::OK_TEXT);
+        }
 
         /**
          * @return mixed
