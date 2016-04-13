@@ -26,7 +26,7 @@
         $lname    = trim($_POST[Users::LNAME]);
         $email    = trim($_POST[Users::EMAIL]);
         $password = trim($_POST[Users::PASSWORD]);
-        $account  = (int)trim($_POST[Users::ACTION_TYPE]);
+        $account  = (int)trim($_POST[Users::ACCOUNT_TYPE]);
 
         if ($table->emailExists($email)) {
             $response->setText('Email Already Exists');
