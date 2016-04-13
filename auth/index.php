@@ -1,5 +1,6 @@
 <?php
     use Backend\Authorization\Auth;
+    use Backend\Database\Tables\BusinessTypes;
 
     session_start();
     require $_SERVER['DOCUMENT_ROOT'] . '/Backend/vendor/autoload.php';
@@ -620,57 +621,29 @@
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
-                                <ul role="menu" class="dropdown-menu">
-                                    
-<li>
-    <a href="#">
-        <span class="entypo-plus-circled margin-iconic"></span>All
-    </a>
-</li>
-<li>
-    <a href="#">
-        <span class="entypo-heart margin-iconic"></span>Resturants</a>
-</li>
-<li>
-    <a href="#">
-        <span class="entypo-cog margin-iconic"></span>Small Shops
-    </a>
-</li>
-<li>
-    <a href="#">
-        <span class="entypo-cog margin-iconic"></span>Groceries
-    </a>
-</li>
-<li>
-    <a href="#">
-        <span class="entypo-cog margin-iconic"></span>Doubles Vendor
-    </a>
-</li>
-<li>
-    <a href="#">
-        <span class="entypo-cog margin-iconic"></span>Market
-    </a>
-</li>
-<li>
-    <a href="#">
-        <span class="entypo-cog margin-iconic"></span>Law / Layer
-    </a>
-</li>
-<li>
-    <a href="#">
-        <span class="entypo-cog margin-iconic"></span>Animal
-    </a>
-</li>
-<li>
-    <a href="#">
-        <span class="entypo-cog margin-iconic"></span>Car Dealers
-    </a>
-</li>
-<li>
-    <a href="#">
-        <span class="entypo-cog margin-iconic"></span>Auto Repairs
-    </a>
-</li>
+                                <!-- Dropdown Rop Right -->
+                                <ul role="menu" id="dropdown-tr" class="dropdown-menu">
+
+                                    <?php
+
+                                        function createBusinessTypeListItem($id, $name, $icon) {
+                                            echo "<li data-id='{$id}'>
+                <a href=\"#\">
+                    <span class=\"{$icon} margin-iconic\"></span>{$name}
+                </a>
+            </li>";
+                                        }
+
+                                        require $_SERVER['DOCUMENT_ROOT'] . '/Backend/vendor/autoload.php';
+
+                                        $table        = new BusinessTypes();
+                                        $businessData = $table->readAll();
+                                        createBusinessTypeListItem(0, 'All', 'entypo-plus-circled');
+                                        for ($i = 0; $i < count($businessData); $i++) {
+                                            $c = $businessData[$i];
+                                            createBusinessTypeListItem($c->getId(), $c->getName(), $c->getIcon());
+                                        }
+                                    ?>
 
                                 </ul>
                             </div>
@@ -1235,14 +1208,15 @@
             });
         </script>
 
-        
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBu8QNl3aC1KLq9J_KnNHauIZvfRsQTSlg"
-        type="text/javascript">
+
+        <script src="js/dashboard.js"></script>
+        <script
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBu8QNl3aC1KLq9J_KnNHauIZvfRsQTSlg&callback=initMap"
+            async defer type="text/javascript">
 </script>
 <script src="js/components/GoogleMaps.js"></script>
 <script src="js/components/Location.js"></script>
 
-    <script src="js/dashboard.js"></script>
 
 
     </body>

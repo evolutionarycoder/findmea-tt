@@ -535,7 +535,8 @@
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
-                                <ul role="menu" class="dropdown-menu">
+                                <!-- Dropdown Rop Right -->
+                                <ul role="menu" id="dropdown-tr" class="dropdown-menu">
                                     
     <li>
         <a href="#">
