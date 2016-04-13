@@ -1,0 +1,182 @@
+{% set footer = true %}
+{% extends "main.twig" %}
+
+{% block css %}
+    <link rel="stylesheet" href="assets/css/media.css">
+
+    <link rel="stylesheet" href="assets/js/upload/demos/css/uploader.css"/>
+    <link rel="stylesheet" href="assets/js/upload/demos/css/demo.css"/>
+
+    <link rel="stylesheet" href="assets/js/dropZone/downloads/css/dropzone.css"/>
+
+    <style>
+        #uploader {
+            display : none;
+        }
+    </style>
+{% endblock %}
+
+
+{% block pageicon %}
+    <i class="fa fa-files-o" aria-hidden="true"></i>
+{% endblock %}
+
+
+{% block pagetitle %}
+    Media Manager
+{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-11"
+             style="margin-top: 10px; min-height: 50px; line-height: 50px; background: #365478; left: 50%; transform: translateX(-50%); border-radius: 10px">
+            <div class="btn-group" style="width: 25%">
+                <a type="button" class="btn btn-danger tooltip-me" data-toggle="tooltip"
+                   data-placement="top" title="Delete Selected Items">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-info tooltip-me" data-toggle="tooltip"
+                   data-placement="top" title="Select All">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-success tooltip-me" id="add-new" data-toggle="tooltip"
+                   data-placement="top" title="Add New Photo">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-warning tooltip-me" id="add-new" data-toggle="tooltip"
+                   data-placement="top" title="Edit Photo">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="padding:0 30px!important;margin-top:30px;">
+        <div id="uploader" class="content-wrap">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="nest" id="DropZoneClose">
+                        <div class="title-alt">
+                            <h6>Upload</h6>
+                        </div>
+                        <div class="body-nest" id="DropZone">
+                            <form action="assets/js/dropZone/upload" class="dropzone" id="my-dropzone"></form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-mansory">
+
+            <div class="col-md-4">
+                <div class="well-media">
+                    <div class="skin skin-flat" style="position: absolute; right: 0;">
+
+                        <input tabindex="13" type="checkbox" id="flat-checkbox-1">
+
+                    </div>
+                    <div class="vendor">
+                        <a class="fancybox" rel="group" href="#">
+                            <img class="img-responsive-media"
+                                 width="350px"
+                                 height="450px"
+                                 src="http://northfieldartsguild.org/_file/Music.jpg"
+                                 alt=""/>
+                        </a>
+                    </div>
+                    <div class="video-text">
+                        <h2>Black Angel</h2>
+                        <p>http://example.com/photo.png</p>
+                    </div>
+                    <div class="tag-nest">
+                        <i>angel</i><i>dark</i><i>mistic</i>
+                    </div>
+                    <div class="photo-category-bg">
+                        <h3>Photo</h3>
+                        <a class="link-media pull-right" href="#">
+                            <span class="fontawesome-picture"></span>
+                        </a>
+                        <div class="triangle-white"></div>
+                        <div class="triangle-photo-right"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="well-media">
+                    <div class="skin skin-flat" style="position: absolute; right: 0;">
+
+                        <input tabindex="13" type="checkbox" id="flat-checkbox-1">
+
+                    </div>
+                    <div class="vendor">
+                        <a class="fancybox" rel="group" href="#">
+                            <img class="img-responsive-media"
+                                 width="350px"
+                                 height="450px"
+                                 src="http://northfieldartsguild.org/_file/Music.jpg"
+                                 alt=""/>
+                        </a>
+                    </div>
+                    <div class="video-text">
+                        <h2>Black Angel</h2>
+                        <p>http://example.com/photo.png</p>
+                    </div>
+                    <div class="tag-nest">
+                        <i>angel</i><i>dark</i><i>mistic</i>
+                    </div>
+                    <div class="photo-category-bg">
+                        <h3>Photo</h3>
+                        <a class="link-media pull-right" href="#">
+                            <span class="fontawesome-picture"></span>
+                        </a>
+                        <div class="triangle-white"></div>
+                        <div class="triangle-photo-right"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <div class="row">
+            <div class="row text-center">
+                <button data-style="zoom-in" class="btn btn btn-primary ladda-button"
+                        type="submit">
+                    Load More
+                </button>
+            </div>
+        </div>
+    </div>
+    {% include '_footer.twig' %}
+{% endblock %}
+
+{% block js %}
+    <script src="assets/js/dropZone/lib/dropzone.js"></script>
+    <script src="assets/js/flatvideo/jquery.fitvids.js"></script>
+    <script>
+        // Basic FitVids Test
+        $(".well-media").fitVids();
+        $(".vendor").fitVids();
+        // Custom selector and No-Double-Wrapping Prevention Test
+        $(".well-media").fitVids({
+            customSelector: "iframe[src^='http://socialcam.com']"
+        });
+    </script>
+
+    <script>
+        var isOpen = false;
+        // uploader
+        $("#add-new").click(function (e) {
+            e.preventDefault();
+            var uploader = $("#uploader");
+            if (isOpen) {
+                uploader.css('display', 'none');
+            } else {
+                uploader.css('display', 'block');
+            }
+            isOpen = !isOpen
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,508 @@
+{% extends "main.twig" %}
+
+{% block css %}
+    <style type="text/css">
+        canvas#canvas4 {
+            position : relative;
+            top      : 20px;
+        }
+
+        /* Business Card */
+        #business-card {
+            position      : absolute;
+            top           : 175px;
+            right         : 0;
+            padding-right : 0;
+        }
+
+        #business-card .body-nest {
+            background-color : #2A4968;
+        }
+
+        #business-card #business-card-info {
+            color : #FFF;
+        }
+
+        @media screen and (min-width : 1650px) {
+            .business-info-inline {
+                display : none;
+            }
+
+            #business-table {
+                width : 100%;
+            }
+
+        }
+
+        @media screen and (max-width : 1659px) {
+            /* Business Card */
+            #business-card .col-sm-3 {
+                width : 100%;
+            }
+
+            #business-table {
+                width : 100%;
+            }
+
+            #business-card .col-sm-8 {
+                width       : 100%;
+                margin-left : 0;
+                left        : 0;
+                margin-top  : 10px
+            }
+
+            .business-info-inline {
+                display : none;
+            }
+
+        }
+
+        @media screen and (max-width : 1125px) {
+            /* Business Card */
+            #business-card {
+                display : none;
+            }
+
+            .business-info-inline {
+                display : block;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .business-info-inline .title-alt {
+                margin-top : 0;
+            }
+
+            /* Business Card */
+            .business-info-inline .col-sm-3 {
+                width : 100%;
+            }
+
+            .business-info-inline .col-sm-8 {
+                width       : 100%;
+                margin-left : 0;
+                left        : 0;
+                margin-top  : 10px
+            }
+
+        }
+    </style>
+{% endblock %}
+
+{% block pageicon %}
+    <i class="icon-window"></i>
+{% endblock %}
+
+{% block pagetitle %}
+    DASHBOARD
+{% endblock %}
+
+
+{% block pagedropdown %}
+    Filter
+{% endblock %}
+
+
+{% block dropdownoptions %}
+<li>
+    <a href="#">
+        <span class="entypo-plus-circled margin-iconic"></span>All
+    </a>
+</li>
+<li>
+    <a href="#">
+        <span class="entypo-heart margin-iconic"></span>Resturants</a>
+</li>
+<li>
+    <a href="#">
+        <span class="entypo-cog margin-iconic"></span>Small Shops
+    </a>
+</li>
+<li>
+    <a href="#">
+        <span class="entypo-cog margin-iconic"></span>Groceries
+    </a>
+</li>
+<li>
+    <a href="#">
+        <span class="entypo-cog margin-iconic"></span>Doubles Vendor
+    </a>
+</li>
+<li>
+    <a href="#">
+        <span class="entypo-cog margin-iconic"></span>Market
+    </a>
+</li>
+<li>
+    <a href="#">
+        <span class="entypo-cog margin-iconic"></span>Law / Layer
+    </a>
+</li>
+<li>
+    <a href="#">
+        <span class="entypo-cog margin-iconic"></span>Animal
+    </a>
+</li>
+<li>
+    <a href="#">
+        <span class="entypo-cog margin-iconic"></span>Car Dealers
+    </a>
+</li>
+<li>
+    <a href="#">
+        <span class="entypo-cog margin-iconic"></span>Auto Repairs
+    </a>
+</li>
+{% endblock %}
+
+
+
+{% block content %}
+    <div id="paper-middle">
+        <div id="mapContainer"></div>
+    </div>
+    <div class="content-wrap">
+        <div class="row">
+            <div class="col-sm-8" id="business-table">
+                <div id="siteClose" class="nest">
+                    <div class="title-alt" style="margin-top: 0;">
+                        <h6>
+                            <span class="fa fa-building"></span>
+                            &nbsp; Top Rated Businesses
+                        </h6>
+
+                        <div class="titleToggle">
+                            <a class="nav-toggle-alt" href="#site">
+                                <span class="entypo-up-open"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="site" class="body-nest" style="min-height:296px;">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <a href="#" class="tooltip-me" data-toggle="tooltip"
+                                               data-placement="right"
+                                               title="Types of business are dependent on your favourites. You can click load more, to load more types of businesses">
+                                                Type
+                                            </a>
+                                        </th>
+                                        <th>
+
+                                            <a href="#" class="tooltip-me" data-toggle="tooltip"
+                                               data-placement="right"
+                                               title="Most Popular Business in this category">
+                                                Popular
+                                            </a>
+                                        </th>
+                                        <th>
+
+                                            <a href="#" class="tooltip-me" data-toggle="tooltip"
+                                               data-placement="right"
+                                               title="Total Amount of this type of business within Trinidad">
+                                                Businesses
+                                            </a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="armada-devider">
+                                            <div class="armada">
+                                                        <span style="background:#65C3DF">
+
+                                                                <span class="">
+                                                                    <i class="fa fa-cutlery"
+                                                                       aria-hidden="true"></i>
+                                                                </span>
+                                                                &nbsp;&nbsp;Restaurants
+                                                        </span>
+                                                <p>
+                                                    <span class="fa fa-thumbs-up"></span>
+                                                    &nbsp;600 <i>Likes</i>
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td class="driver-devider">
+                                            <img class="armada-pic img-circle" alt=""
+                                                 src="http://api.randomuser.me/portraits/thumb/men/14.jpg">
+                                            <h3>Seafood Cusinee</h3>
+                                            <br>
+                                            <p>Arouca</p>
+                                        </td>
+                                        <td class="progress-devider">
+                                            <section id="basic">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success"
+                                                         role="progressbar" aria-valuenow="40"
+                                                         aria-valuemin="0" aria-valuemax="100"
+                                                         style="width: 40%">
+                                                        <span class="pull-right">40%</span>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <span class="label pull-left">Total Restaurants</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="armada-devider">
+                                            <div class="armada">
+                                                        <span style="background:#45B6B0">
+                                                            <span class=""><i class="fa fa-paw" aria-hidden="true"></i></span>&nbsp;&nbsp; Pet Stores</span>
+                                                <p>
+                                                    <span class="fa fa-thumbs-up"></span>
+                                                    &nbsp;500 <i>Likes</i>
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td class="driver-devider">
+                                            <img class="armada-pic img-circle" alt=""
+                                                 src="http://api.randomuser.me/portraits/thumb/men/38.jpg">
+                                            <h3>D&S Pets </h3>
+                                            <br>
+                                            <p>San Fernando</p>
+                                        </td>
+                                        <td class="progress-devider">
+
+                                            <section id="percentage">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success"
+                                                         role="progressbar" aria-valuenow="60"
+                                                         aria-valuemin="0" aria-valuemax="100"
+                                                         style="width: 60%">
+                                                        <span class="pull-right">60%</span>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <span class="label pull-left">Total Pet Shops</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="armada-devider">
+                                            <div class="armada">
+                                                        <span style="background:#FF6B6B">
+                                                            <span class="">
+                                                                <i class="fa fa-credit-card-alt" aria-hidden="true"></i></span>
+                                                            &nbsp;&nbsp;Atm</span>
+                                                <p>
+                                                    <span class="fa fa-thumbs-up"></span>
+                                                    &nbsp;500 <i>Likes</i>
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td class="driver-devider">
+                                            <img class="armada-pic img-circle" alt=""
+                                                 src="http://api.randomuser.me/portraits/thumb/men/39.jpg">
+                                            <h3>ATM</h3>
+                                            <br>
+                                            <p>Freeport</p>
+                                        </td>
+                                        <td class="progress-devider">
+
+                                            <section id="step">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success"
+                                                         role="progressbar" aria-valuenow="60"
+                                                         aria-valuemin="0" aria-valuemax="100"
+                                                         style="width: 30%">
+                                                        <span class="pull-right">30%</span>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            <span class="label pull-left">Total ATM'S</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row text-center">
+                            <button data-style="zoom-in" class="btn btn btn-primary ladda-button"
+                                    type="submit">
+                                Load More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 business-info-inline">
+                <div id="RealTimeClose" class="nest">
+                    <div class="title-alt">
+
+                        <h6>
+                            <span class=""><i class="fa fa-info" aria-hidden="true"></i></span>&nbsp;Business
+                            Information</h6>
+                        <div class="titleToggle">
+                            <a class="nav-toggle-alt" href="#RealTime">
+                                <span class="entypo-up-open"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="RealTime" style="min-height:296px;padding-top:20px;" class="body-nest">
+                        <div class="row" style="margin-top: 5px">
+                            <div class="btn-group" style="width: 100%; margin-left: 10px">
+                                <div>
+                                    <a href="#" class="tooltip-me text-white btn btn-default"
+                                       data-toggle="tooltip"
+                                       data-placement="top" title="Visit TimeLine">
+                                        <i class="fa fa-info" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="#" class="tooltip-me text-white btn btn-warning"
+                                       data-toggle="tooltip"
+                                       data-placement="top" title="Report as Spam">
+                                        <i class="fa fa-ban" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="#" class="tooltip-me text-white btn btn-success"
+                                       data-toggle="tooltip"
+                                       data-placement="top" title="Favourite this place">
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                    </a>
+
+                                    <a style="margin-right: 20px" href="#"
+                                       class="tooltip-me text-white btn btn-danger pull-right"
+                                       data-toggle="tooltip"
+                                       data-placement="top" title="Connect with Business">
+                                        <i class="fa fa-comments-o" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="row" style="padding: 10px; color: #5BC0DE">
+                            <div class="col-sm-3"
+                                 style="">
+                                <h4 style="margin-bottom: 5px; font-weight: bold;">Area</h4>
+                                <p style="color: #5BC0DE; padding: 0">
+                                    Arouca
+                                </p>
+                                <h4 style="margin-bottom: 5px; font-weight: bold;">Phone</h4>
+                                <p style="color: #5BC0DE; padding: 0">
+                                    123-4567
+                                </p>
+                                <h4 style="margin-bottom: 5px; font-weight: bold;">Website</h4>
+                                <p style="color: #5BC0DE; padding: 0">
+                                    http://example.com
+                                </p>
+                            </div>
+                            <div class="col-sm-8 col-sm-push-1"
+                                 style="background: #F0F0F0; color: #5BC0DE; padding: 5px; border-radius: 5px">
+                                <h4 style="margin-bottom: 5px;  font-weight: bold;">Description</h4>
+                                <p style="color: #5BC0DE; padding: 0">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dicta
+                                    explicabo nihil
+                                    obcaecati odio perferendis sit. Aut iusto laudantium molestiae molestias
+                                    nisi similique.
+                                    Dolorum illo molestiae nihil non suscipit voluptate!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-wrap">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+            </div>
+        </div>
+        <!-- /END OF CONTENT -->
+
+
+        <!-- FOOTER -->
+        {% include '_footer.twig' %}
+        <!-- / END OF FOOTER -->
+
+
+    </div>
+{% endblock %}
+
+{% block outsidehtml %}
+    <!-- Business Information Card-->
+    <div id="business-card" class="col-sm-4">
+        <div id="business-card-container" class="nest">
+            <div class="title-alt" style="margin-top: 0;">
+                <h6>
+                    <span class=""><i class="fa fa-info" aria-hidden="true"></i></span>&nbsp;Business
+                    Information</h6>
+                <div class="titleToggle">
+                    <a class="nav-toggle-alt" href="#business-card-info">
+                        <span class="entypo-up-open"></span>
+                    </a>
+                </div>
+            </div>
+            <div id="business-card-info" style="min-height:296px;padding-top:0;display: none" class="body-nest">
+                <div class="row text-center bg-info" style="color: #FFF">
+                    <h4>Seafood Cusine</h4>
+                </div>
+                <div class="row" style="margin-top: 5px">
+                    <div class="btn-group" style="width: 100%; margin-left: 10px">
+                        <div>
+                            <a href="#" class="tooltip-me text-white btn btn-default"
+                               data-toggle="tooltip"
+                               data-placement="top" title="More Info">
+                                <i class="fa fa-info" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" class="tooltip-me text-white btn btn-warning"
+                               data-toggle="tooltip"
+                               data-placement="top" title="Report as Spam">
+                                <i class="fa fa-ban" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" class="tooltip-me text-white btn btn-success"
+                               data-toggle="tooltip"
+                               data-placement="top" title="Favourite this place">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </a>
+
+                            <a style="margin-right: 20px" href="#"
+                               class="tooltip-me text-white btn btn-danger pull-right"
+                               data-toggle="tooltip"
+                               data-placement="top" title="Connect with Business">
+                                <i class="fa fa-comments-o" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="business-info row" style="padding: 10px; color: #5BC0DE">
+                    <div class="col-sm-3"
+                         style="background: #F0F0F0; color: #5BC0DE; padding: 5px; border-radius: 5px">
+                        <h4 style="margin-bottom: 5px; font-weight: bold;">Area</h4>
+                        <p style="color: #5BC0DE; padding: 0">
+                            Arouca
+                        </p>
+                        <h4 style="margin-bottom: 5px; font-weight: bold;">Phone</h4>
+                        <p style="color: #5BC0DE; padding: 0">
+                            123-4567
+                        </p>
+                        <h4 style="margin-bottom: 5px; font-weight: bold;">Website</h4>
+                        <p style="color: #5BC0DE; padding: 0">
+                            http://example.com
+                        </p>
+                    </div>
+                    <div class="col-sm-8 col-sm-push-1"
+                         style="background: #F0F0F0; color: #5BC0DE; padding: 5px; border-radius: 5px">
+                        <h4 style="margin-bottom: 5px;  font-weight: bold;">Description</h4>
+                        <p style="color: #5BC0DE; padding: 0">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dicta explicabo nihil
+                            obcaecati odio perferendis sit. Aut iusto laudantium molestiae molestias nisi similique.
+                            Dolorum illo molestiae nihil non suscipit voluptate!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    {% include '_gmaps.twig' %}
+    <script src="js/dashboard.js"></script>
+{% endblock %}
