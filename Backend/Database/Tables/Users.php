@@ -24,6 +24,9 @@
 
         private $accId, $password, $fname, $lname, $email, $folderPrefix, $photo;
 
+        // prepared statement
+        private $get_user;
+
         public function __construct($mysqli = false) {
             parent::__construct($mysqli);
             $table = self::TABLE_NAME;
@@ -54,6 +57,9 @@
             $this->r->bind_param("i", $this->id);
             $this->u->bind_param("isssssi", $this->accId, $this->password, $this->fname, $this->lname, $this->email, $this->photo, $this->id);
             $this->d->bind_param("i", $this->id);
+
+            $this->get_user = $this->connection->prepare('SELECT * FROM users  WHERE email = ? AND password = ?;');
+            $this->get_user->bind_param('ss', $this->email, $this->password);
         }
 
 
@@ -103,11 +109,36 @@
             return false;
         }
 
+        /**
+         * @param string $email    Email for user to look for
+         * @param string $password Password for user to look for
+         *
+         * @return User|bool User object on success, false on failure
+         */
+        public function getUser($email, $password) {
+            $this->cleanString($email);
+            $this->cleanString($password);
+
+            $this->email    = $email;
+            $this->password = $password;
+
+            if ($this->get_user->execute()) {
+                $result = $this->get_user->get_result();
+                // means a user was found
+                if ($result->num_rows > 0) {
+                    $obj = $result->fetch_object();
+                    return $this->createObjFromRow($obj);
+                }
+            }
+
+            return false;
+        }
+
         protected function createObjFromRow($row) {
             $user = new User($row->id, $row->account_type_id, null, null, $row->fname, $row->lname, $row->email, $row->password, $row->folder_prefix, $row->photo);
 
             $accountTable = new AccountTypes($this->getConnection());
-            $account      = $accountTable->read($user->getId());
+            $account      = $accountTable->read($user->getAccountTypeId());
 
             $user->setAccountTypeName($account->getName());
             $user->setAccountTypeSlug($account->getSlug());
