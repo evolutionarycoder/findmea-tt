@@ -385,3 +385,8 @@
     font-size:1.5em
 }
 
+.ladda-button.normal {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
