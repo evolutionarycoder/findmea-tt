@@ -2,13 +2,6 @@
  * Created by Daniel M. Prince on 4/11/16.
  */
 (function () {
-    var createNewAccount = $(".create-new-account"),
-        loginWrapper     = $(".login-wrapper.login"),
-        createWrapper    = $(".login-wrapper.create"),
-        manage           = HttpManager('users/index.php'),
-        wizard,
-        selectedPlan     = 1;
-
     var Validate = function (text) {
         return new Validate.init(text);
     };
@@ -69,6 +62,106 @@
 
     Validate.init.prototype = Validate.prototype;
 
+
+    var createNewAccount = $(".create-new-account"),
+        loginWrapper     = $(".login-wrapper.login"),
+        createWrapper    = $(".login-wrapper.create"),
+        manage           = HttpManager('users/index.php'),
+        wizard,
+        selectedPlan     = 1,
+        cancel           = function () {
+            createWrapper.addClass("bounceOutLeft hide");
+            loginWrapper.removeClass("hide").addClass("bounceInRight").css("position", "relative");
+            resetClassesOnWrappers();
+        },
+        validateCallback = function (response, values, laddaBtns) {
+            if (response.statusOk()) {
+                laddaBtns.forEach(function (laddaBtn) {
+                    laddaBtn.stop();
+                });
+                $('.create-btn').text('Created Successfully');
+                $('#inputUsernameEmail').val(values.email);
+                $('#inputPassword').val(values.password);
+                Notify("Account Created", "We've took the liberty in filling out your log in form").success();
+            }
+        },
+        /**
+         *
+         * @param ids
+         * @param propertyPrefix
+         * @param passwordRetype
+         * @param {Function} cb
+         */
+        validate         = function (ids, propertyPrefix, passwordRetype, cb) {
+            var prefix = propertyPrefix || '';
+
+            function showError(property, text) {
+                $('[data-error="' + prefix + property + '"]').text(text).css('display', 'block');
+            }
+
+            function reset(property) {
+                $('[data-error="' + prefix + property + '"]').text('').css('display', 'block');
+            }
+
+            var values  = {},
+                correct = 0;
+
+            $.each(ids, function (property, value) {
+                reset(property);
+                var elValue = $('#' + value).val(),
+                    result;
+
+                if (property == 'fname') {
+                    result = Validate(elValue).firstName();
+                }
+
+                if (property == 'lname') {
+                    result = Validate(elValue).lastName();
+                }
+
+                if (property == 'email') {
+                    result = Validate(elValue).email();
+                }
+
+                if (property == 'password') {
+                    result = Validate(elValue).password($(passwordRetype).val());
+                }
+
+                if (result !== true) {
+                    showError(property, result);
+                } else {
+                    values[property] = elValue;
+                    correct++;
+                }
+            });
+
+            if (correct === 4) {
+                values.account = selectedPlan;
+                Notify("Validated", "Beginning To Create Account...").info();
+                var createAccount     = createNewAccount.get(1),
+                    createAccBtnLarge = Ladda.create(createAccount),
+                    createAccBtnSmall = Ladda.create(document.querySelector('#signup-smallscreen'));
+                $('a[href="#cancel"]').click();
+                Dom.delay(300, function () {
+                    createAccBtnLarge.start();
+                    createAccBtnSmall.start();
+                    manage.create(values, function (data) {
+                        var response = Response(data);
+                        if (!response.statusOk()) {
+                            Notify('Error!', response.getText()).error();
+                            createAccBtnLarge.stop();
+                            createAccBtnSmall.stop();
+                            createAccount.click();
+                        } else {
+                            $('.create-btn').unbind('click');
+                        }
+                        cb(response, values, [createAccBtnLarge, createAccBtnSmall]);
+                    });
+                });
+            }
+        };
+
+
     var resetClassesOnWrappers = function () {
         loginWrapper.removeClass("bounceOutLeft bounceInLeft");
         createWrapper.removeClass("bounceOutLeft bounceInLeft");
@@ -91,84 +184,18 @@
         enableCancelButton: true,
         onCanceled        : function (e) {
             e.preventDefault();
-            createWrapper.addClass("bounceOutLeft hide");
-            loginWrapper.removeClass("hide").addClass("bounceInRight").css("position", "relative");
-            resetClassesOnWrappers();
+            cancel();
         },
         onFinishing       : function (e, idx) {
-
-            function showError(property, text, flag) {
-                $('[data-error="step-' + property + '"]').text(text).css('display', 'block');
-            }
-
-            function reset(property) {
-                $('[data-error="step-' + property + '"]').text('').css('display', 'block');
-            }
-
             // means its finished
             if (idx === 2) {
-                var ids     = {
-                        fname   : 'step-fname',
-                        lname   : 'step-lname',
-                        email   : 'step-email',
-                        password: 'step-password'
-                    },
-                    values  = {},
-                    correct = 0;
-
-                $.each(ids, function (property, value) {
-                    reset(property);
-                    var elValue = $('#' + value).val(),
-                        result;
-
-                    if (property == 'fname') {
-                        result = Validate(elValue).firstName();
-                    }
-
-                    if (property == 'lname') {
-                        result = Validate(elValue).lastName();
-                    }
-
-                    if (property == 'email') {
-                        result = Validate(elValue).email();
-                    }
-
-                    if (property == 'password') {
-                        result = Validate(elValue).password($('#step-retype').val());
-                    }
-
-                    if (result !== true) {
-                        showError(property, result);
-                    } else {
-                        values[property] = elValue;
-                        correct++;
-                    }
-                });
-
-                if (correct === 4) {
-                    values.account = selectedPlan;
-                    Notify("Validated", "Creating Account!").error();
-                    var createAcc = Ladda.create(createNewAccount.get(1));
-                    $('a[href="#cancel"]').click();
-                    Dom.delay(300, function () {
-                        createAcc.start();
-                        manage.create(values, function (data) {
-                            var response = Response(data),
-                                accBtn   = $('.create-new-account.ladda-button');
-                            createAcc.stop();
-                            if (response.statusOk()) {
-                                accBtn.text('Created Successfully');
-                                createNewAccount.unbind('click');
-                                $('#inputUsernameEmail').val(values.email);
-                                $('#inputPassword').val(values.password);
-                                Notify("Account Created", "We've took the liberty in filling out your log in form").success();
-                            } else {
-                                Notify('Problem Occurred', response.getText()).error();
-                                accBtn.click();
-                            }
-                        });
-                    });
-                }
+                var ids = {
+                    fname   : 'step-fname',
+                    lname   : 'step-lname',
+                    email   : 'step-email',
+                    password: 'step-password'
+                };
+                validate(ids, 'step-', '#step-retype', validateCallback);
             } else {
                 Notify("That's A No No!", "Fill Out Form").error();
             }
@@ -180,16 +207,37 @@
     plan.click(function (e) {
         plan.css('background-color', '#37BCE5');
         e.preventDefault();
-        var type = $(this).attr('data-id');
+        var type     = $(this).attr('data-id'),
+            inWizard = $(this).attr('data-belongs');
         if ($.isNumeric(type) && type.length === 1) {
-            $(this).css('background-color', "#5CB85C");
+            $('a[data-id=' + type + ']').css('background-color', "#5CB85C");
             selectedPlan = type;
-            wizard.steps('next');
+            if (inWizard === 'wizard') {
+                wizard.steps('next');
+            }
         } else {
             Notify('Why did you do that?', "You Can't hack us!").notice();
             Dom.delay(5000, function () {
                 window.location.reload();
             });
         }
+    });
+
+    // create on small screen
+    $('#signup-smallscreen').click(function (e) {
+        e.preventDefault();
+        var ids = {
+            fname   : 'fname',
+            lname   : 'lname',
+            email   : 'email',
+            password: 'password'
+        };
+        validate(ids, null, '#rpassword', validateCallback);
+    });
+
+    // cancel smallscreen
+    $('#cancel-smallscreen').click(function (e) {
+        e.preventDefault();
+        cancel();
     });
 })();
