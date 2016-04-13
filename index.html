@@ -44,11 +44,10 @@
                 overflow : hidden;
             }
 
-
             .button-demo, .progress-demo {
-                display: inline-block;
-                margin-right: 3px;
-                margin-bottom: 20px;
+                display       : inline-block;
+                margin-right  : 3px;
+                margin-bottom : 20px;
             }
 
             [data-error] {
@@ -124,7 +123,7 @@
                                     <label>
                                         <input type="checkbox">Remember me</label>
                                 </div>
-                                <button data-style="zoom-in" class="btn btn btn-primary ladda-button pull-right"
+                                <button data-style="zoom-in" class="btn btn btn-primary ladda-button normal pull-right"
                                         type="submit">
                                     Log In
                                 </button>
@@ -135,10 +134,10 @@
                                                                                             class="create-new-account">Sign
                                     Up</a></b></span></center>
                             </div>
-                            <div class="row">
+                            <div class="row text-center">
                                 <div class="col-md-12 row-block button-demo">
                                     <a href="#" data-style="zoom-in"
-                                       class="create-new-account btn btn-primary btn-block ladda-button">Create
+                                       class="create-new-account create-btn btn btn-primary btn-block ladda-button">Create
                                         New Account</a>
                                 </div>
                             </div>
@@ -166,6 +165,19 @@
                             <div class="body-nest small-screens" id="horizontal">
                                 <div class="form_center">
                                     <form role="form" class="form-horizontal">
+                                        <div class="form-group">
+                                            <a class="btn create-btn btn-success plan plan-button"
+                                               data-id="1"
+                                               type="submit"
+                                               style="background-color: #5CB85C !important;">
+                                                Personal Account
+                                            </a>
+                                            <a class="btn btn-primary plan plan-button"
+                                               data-id="2"
+                                               type="submit">
+                                                Business Account
+                                            </a>
+                                        </div>
                                         <div class="form-group">
                                             <label class="col-lg-2 col-sm-2 control-label" for="fname">First
                                                 Name</label>
@@ -209,7 +221,7 @@
                                                 Password</label>
                                             <div class="col-lg-10">
                                                 <input type="password" id="rpassword" class="form-control">
-                                                <p data-error="rpassword" class="help-block text-danger">Example
+                                                <p data-error="password" class="help-block text-danger">Example
                                                     block-level help text here.</p>
                                             </div>
                                         </div>
@@ -217,7 +229,13 @@
 
                                         <div class="form-group">
                                             <div class="col-lg-offset-2 col-lg-10">
-                                                <button class="btn btn-danger" type="submit">Sign Up</button>
+                                                <button id="signup-smallscreen" data-style="zoom-in"
+                                                        class="btn create-btn btn-success ladda-button normal"
+                                                        type="submit">Sign Up
+                                                </button>
+                                                <button id="cancel-smallscreen" class="btn btn-primary" type="submit">
+                                                    Cancel
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -237,7 +255,9 @@
                                                 <div class="plan">
                                                     <h3 class="plan-title">Personal</h3>
                                                     <p>Average User</p>
-                                                    <a href="#" data-id="1" class="plan plan-button" style="background-color: #5CB85C !important;">Choose Plan</a>
+                                                    <a href="#" data-id="1" data-belongs="wizard"
+                                                       class="plan plan-button"
+                                                       style="background-color: #5CB85C !important;">Choose Plan</a>
                                                 </div>
 
                                             </div>
@@ -247,7 +267,8 @@
                                                 <div class="plan">
                                                     <h3 class="plan-title">Business</h3>
                                                     <p>Business User</p>
-                                                    <a href="#" data-id="2" class="plan plan-button">Choose Plan</a>
+                                                    <a href="#" data-id="2" data-belongs="wizard"
+                                                       class="plan plan-button">Choose Plan</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,20 +282,21 @@
                                             <form role="form" class="form-horizontal">
 
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-sm-2 control-label">
+                                                    <label class="col-lg-2 control-label">
                                                         First Name</label>
                                                     <div class="col-lg-10">
                                                         <input type="text"
                                                                id="step-fname"
                                                                placeholder="First Name"
                                                                class="form-control">
-                                                        <p data-error="step-fname" class="help-block text-danger">Example
+                                                        <p data-error="step-fname" class="help-block text-danger">
+                                                            Example
                                                             block-level
                                                             help text here.</p>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-sm-2 control-label">
+                                                    <label class="col-lg-2 control-label">
                                                         Last Name
                                                     </label>
                                                     <div class="col-lg-10">
@@ -282,7 +304,8 @@
                                                                id="step-lname"
                                                                placeholder="Last Name"
                                                                class="form-control">
-                                                        <p data-error="step-lname" class="help-block text-danger">Example
+                                                        <p data-error="step-lname" class="help-block text-danger">
+                                                            Example
                                                             block-level
                                                             help text here.</p>
                                                     </div>
@@ -430,6 +453,16 @@
 
         <script src="auth/js/http/Response.js"></script>
         <script src="auth/js/http/Manager.js"></script>
+
+        <script>
+            // get users location
+            $.getJSON('http://ipinfo.io', function (data) {
+                $('.country').text(data['country']);
+                if (data['country'].toLowerCase() !== 'tt') {
+                    $('.account-box').html('<h1 class="text-center">Your Country Is Not Supported</h1>');
+                }
+            });
+        </script>
 
         <!-- Page Script -->
         <script src="auth/js/login.js"></script>
