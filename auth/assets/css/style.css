@@ -501,7 +501,7 @@ input:-webkit-autofill, textarea:-webkit-autofill {
     box-shadow       : none !important;
     color            : #C7D5E0 !important;
     font-size        : 13px !important;
-    height           : 31px !important;
+    height           : 31px;
 }
 
 .form-update {
@@ -923,7 +923,6 @@ input[type="search"] {
     font-family : inherit;
     font-size   : 100%;
 }
-
 
 /*noinspection ALL*/
 input[type="search"] {
@@ -2170,7 +2169,7 @@ img.sidebar-icon {
     height        : 50px;
     margin        : 30px auto 0;
     border-bottom : 1px dotted #DDD;
-    background: #5BC0DE;
+    background    : #5BC0DE;
 }
 
 .nest .title-alt h6 {
@@ -3087,7 +3086,7 @@ b#speed {
     background-repeat   : no-repeat;
     position            : relative;
     overflow            : hidden;
-    background          : linear-gradient(45deg, transparent 20px,  color-green 20px), linear-gradient(135deg, transparent 20px, color-green 20px), linear-gradient(225deg, transparent 20px,  color-green 20px), linear-gradient(315deg, transparent 20px,  color-green 20px);
+    background          : linear-gradient(45deg, transparent 20px, color-green 20px), linear-gradient(135deg, transparent 20px, color-green 20px), linear-gradient(225deg, transparent 20px, color-green 20px), linear-gradient(315deg, transparent 20px, color-green 20px);
     background-position : bottom left, top left, top right, bottom right;
     background-size     : 50% 50%;
     background-repeat   : no-repeat;
@@ -3160,7 +3159,6 @@ b#speed {
     list-style : none;
     display    : inline-block;
 }
-
 
 /*noinspection ALL*/
 #sheetswitch {
