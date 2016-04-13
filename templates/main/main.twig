@@ -1,4 +1,3 @@
-{% set footer = false %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,10 +9,8 @@
         <meta name="author" content="">
         <!-- Le styles -->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/loader-style.css">
-        <link rel="stylesheet" href="assets/css/bootstrap.css">
 
         <link rel="stylesheet" href="assets/js/button/ladda/ladda.min.css">
 
@@ -25,6 +22,19 @@
 
         <!-- PNotify -->
         <link rel="stylesheet" href="assets/css/pnotify.custom.min.css">
+
+        <!-- Form -->
+        <link href="assets/js/iCheck/flat/all.css" rel="stylesheet">
+        <link href="assets/js/iCheck/line/all.css" rel="stylesheet">
+        <link href="assets/js/colorPicker/bootstrap-colorpicker.css" rel="stylesheet">
+        <link href="assets/js/switch/bootstrap-switch.css" rel="stylesheet">
+        <link href="assets/js/validate/validate.css" rel="stylesheet">
+        <link href="assets/js/idealform/css/jquery.idealforms.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/loader-style.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+
 
         {% block css %}
 
@@ -318,7 +328,7 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a class="tooltip-tip2 ajax-load" href="#" title="Blog List">
+                                        <a class="tooltip-tip2 ajax-load" href="blog/" title="Blog List">
                                             <i class="entypo-doc-text"></i><span>Create</span></a>
                                     </li>
                                     <li>
@@ -345,7 +355,7 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a class="tooltip-tip2 ajax-load" href="#" title="Blog List">
+                                        <a class="tooltip-tip2 ajax-load" href="friends.php" title="Blog List">
                                             <i class="fa fa-search" aria-hidden="true"></i><span>Find Friends</span></a>
                                     </li>
                                     <li>
@@ -353,6 +363,12 @@
                                             <i class="fa fa-list" aria-hidden="true"></i><span>Manage Friends</span></a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip ajax-load" href="media.php" title="Social">
+                                    <i class="icon-feed"></i>
+                                    <span>Media</span>
+                                </a>
                             </li>
                         </ul>
 
@@ -367,7 +383,7 @@
                             </li>
 
                             <li>
-                                <a class="tooltip-tip ajax-load" href="index.html" title="Dashboard">
+                                <a class="tooltip-tip ajax-load" href="index.php" title="Dashboard">
                                     <i class="icon-window"></i>
                                     <span>Dashboard</span>
 
@@ -467,8 +483,6 @@
         <!--  PAPER WRAP -->
         <div class="wrap-fluid">
             <div class="container-fluid paper-wrap bevel tlbr">
-
-
                 <!-- CONTENT -->
                 <!--TITLE -->
                 <div class="row">
@@ -559,22 +573,7 @@
 
 
             <!-- FOOTER -->
-            {% if footer %}
-                <div class="footer-space"></div>
-                <div id="footer">
-                    <div class="devider-footer-left"></div>
-                    <div class="time">
-                        <p id="spanDate"></p>
-                        <p id="clock"></p>
-                    </div>
-                    <div class="copyright">Make with Love
-                        <span class="entypo-heart"></span>2014 <a href="http://gamatechno.com">Thesmile</a> All Rights
-                        Reserved
-                    </div>
-                    <div class="devider-footer"></div>
 
-                </div>
-            {% endif %}
             <!-- / END OF FOOTER -->
         </div>
         <!--  END OF PAPER WRAP -->
@@ -706,6 +705,35 @@
                 $('.country').text(data['country']);
                 $('.city').text(data['city']);
                 $('.region').text(data['region']);
+            });
+        </script>
+
+        <!-- Form Styles -->
+        <!-- /MAIN EFFECT -->
+        <script type="text/javascript" src="assets/js/iCheck/jquery.icheck.js"></script>
+        <script type="text/javascript" src="assets/js/switch/bootstrap-switch.js"></script>
+        <script>
+            $(document).ready(function() {
+                //CHECKBOX PRETTYFY
+                $('.skin-flat input').iCheck({
+                    checkboxClass: 'icheckbox_flat-red',
+                    radioClass: 'iradio_flat-red'
+                });
+                $('.skin-line input').each(function() {
+                    var self = $(this),
+                        label = self.next(),
+                        label_text = label.text();
+
+                    label.remove();
+                    self.iCheck({
+                        checkboxClass: 'icheckbox_line-blue',
+                        radioClass: 'iradio_line-blue',
+                        insert: '<div class="icheck_line-icon"></div>' + label_text
+                    });
+                });
+                //Switch Button
+
+                $('.make-switch').bootstrapSwitch('setSizeClass', 'switch-small');
             });
         </script>
 
