@@ -1029,6 +1029,9 @@
         <script type="text/javascript" src="assets/js/bootstrap.js"></script>
         <script type="text/javascript" src="assets/js/app.js"></script>
         <script type="text/javascript" src="assets/js/load.js"></script>
+        <script>
+            var prefix;
+        </script>
         <script type="text/javascript" src="assets/js/main.js"></script>
 
         <!-- Button Styles -->
@@ -1037,7 +1040,7 @@
 
         <!--Notifications PLUG IN-->
         <script type="text/javascript" src="assets/js/pnotify/pnotify.custom.min.js"></script>
-        <script type="text/javascript" src="js/ui/Notify.js"></script>
+        <script type="text/javascript" src="js/classes/Notify.js"></script>
         <script>
             // enable tooltips
             $('.tooltip-me').tooltip();
