@@ -44,6 +44,7 @@
         <link rel="stylesheet" href="assets/css/loader-style.css">
         <link rel="stylesheet" href="assets/css/bootstrap.css">
 
+        <link rel="stylesheet" href="css/utility.css">
 
         
     <link rel="stylesheet" href="assets/css/profile.css">

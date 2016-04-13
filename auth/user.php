@@ -44,6 +44,7 @@
         <link rel="stylesheet" href="assets/css/loader-style.css">
         <link rel="stylesheet" href="assets/css/bootstrap.css">
 
+        <link rel="stylesheet" href="css/utility.css">
 
         
     <link rel="stylesheet" href="assets/css/profile.css">
@@ -535,7 +536,8 @@
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
-                                <ul role="menu" class="dropdown-menu">
+                                <!-- Dropdown Rop Right -->
+                                <ul role="menu" id="dropdown-tr" class="dropdown-menu">
                                     
     <li>
         <a href="#">

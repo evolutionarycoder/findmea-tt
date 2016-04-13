@@ -45,6 +45,7 @@
         <link rel="stylesheet" href="assets/css/loader-style.css">
         <link rel="stylesheet" href="assets/css/bootstrap.css">
 
+        <link rel="stylesheet" href="css/utility.css">
 
         
     <style type="text/css">
@@ -110,9 +111,9 @@
             }
 
             .business-info-inline {
-                display : block;
-                width: 100%;
-                margin-top: 10px;
+                display    : block;
+                width      : 100%;
+                margin-top : 10px;
             }
 
             .business-info-inline .title-alt {
@@ -1141,6 +1142,104 @@
                     </div>
                 </div>
             </div>
+
+            <div id="create-business" style="min-height:296px;padding-top:0;display: block; background-color: #fff"
+                 class="body-nest">
+
+                <div class="row" style='margin-top: 5px'>
+                    <div>
+                        <form role="form" class="form-horizontal">
+                            <div class="form-group m-lr-0">
+                                <div class="btn-group pull-left col-lg-4" style="margin: 0; !important;">
+                                    <div class="btn">
+                                        Type
+                                    </div>
+                                    <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu">
+                                        <li>
+                                            <a href="#">
+                                                <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="entypo-heart margin-iconic"></span>Favorite</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="entypo-cog margin-iconic"></span>Setting</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" placeholder="Type" readonly
+                                           id="business-type"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group  m-lr-0">
+                                <div class="col-lg-12">
+                                    <input type="text"
+                                           id="business-name"
+                                           placeholder="Name"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group  m-lr-0">
+                                <div class="col-lg-12">
+                                    <input type="text"
+                                           id="business-area"
+                                           placeholder="Area"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group  m-lr-0">
+                                <div class="col-lg-12">
+                                    <input type="text"
+                                           id="business-phone"
+                                           placeholder="Phone"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group  m-lr-0">
+                                <div class="col-lg-12">
+                                    <input type="text"
+                                           id="business-website"
+                                           placeholder="Website"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-right: 0; margin-left: 0">
+                                <div class="col-lg-12">
+                                    <textarea id="business-description" placeholder="description" class="form-control"
+                                              rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-right: 0; margin-left: 0">
+                                <div class="col-lg-12">
+                                    <button class="btn btn-success pull-right" id="business-create" type="submit">
+                                        Create
+                                    </button>
+                                    <button
+                                        title="Your Location of your business will be using your current location. If your current location is not your place of business cancel this transaction"
+                                        class="m-r-5 btn btn-info tooltip-me pull-right" data-toggle="toggle"
+                                        type="submit">Help
+                                    </button>
+                                    <button class="btn btn-danger pull-left" id="business-cancel" type="submit">Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
         </div>
     </div>
 
@@ -1210,6 +1309,7 @@
 
 
         <script src="js/dashboard.js"></script>
+        <script src="js/business.js"></script>
         <script
             src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBu8QNl3aC1KLq9J_KnNHauIZvfRsQTSlg&callback=initMap"
             async defer type="text/javascript">
