@@ -12,7 +12,8 @@
     use Exception;
 
     abstract class Database {
-        const ENV = "local";
+        const ENV      = "local";
+        const DOC_ROOT = '';
         /**
          * @var bool Flag to see if a connection has already been made
          */
@@ -61,13 +62,14 @@
          * @param bool|\mysqli $mysqli
          */
         public function __construct($mysqli = false) {
-            $config     = include "../config.php";
-            $this->host = $config["host"];
-            $this->user = $config["user"];
-            $this->pass = $config["password"];
-            $this->db   = $config["database"];
+            $server_root = $_SERVER["DOCUMENT_ROOT"];
+            $config      = require $server_root . '/Backend/config.php';
+            $this->host  = $config["host"];
+            $this->user  = $config["user"];
+            $this->pass  = $config["password"];
+            $this->db    = $config["database"];
 
-            $this->jsonLocation = $_SERVER["DOCUMENT_ROOT"];
+            $this->jsonLocation = $server_root;
 
             if ($mysqli !== false) {
                 $this->connection = $mysqli;
@@ -449,6 +451,10 @@
                     $obj->$key = htmlentities(mysqli_real_escape_string($this->connection, $val), ENT_QUOTES);
                 }
             }
+        }
+
+        protected function cleanString($string){
+            return htmlentities(mysqli_real_escape_string($this->connection, $string), ENT_QUOTES);
         }
 
     }
