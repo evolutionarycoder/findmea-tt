@@ -1,3 +1,12 @@
+<?php
+    use Backend\Authorization\Auth;
+
+    session_start();
+    require $_SERVER['DOCUMENT_ROOT'] . '/Backend/vendor/autoload.php';
+    if (!Auth::isLoggedIn()) {
+        header('Location: ' . '/');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -222,8 +231,8 @@
                         <li>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <img alt="" class="admin-pic img-circle"
-                                     src="http://api.randomuser.me/portraits/thumb/men/10.jpg">Hi, Dave Mattew <b
-                                        class="caret"></b>
+                                     src="<?php echo Auth::PHOTO(); ?>">
+                                Hi, <?php echo Auth::FNAME() . ' ' . Auth::LNAME(); ?> <b class="caret"></b>
                             </a>
                             <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
                                 <li>
@@ -1789,9 +1798,12 @@
         <script src="assets/js/button/ladda/spin.min.js"></script>
         <script src="assets/js/button/ladda/ladda.min.js"></script>
 
+        <!-- DomManipulation -->
+        <script type="text/javascript" src="js/ui/DomManipulation.js"></script>
+
         <!--Notifications PLUG IN-->
         <script type="text/javascript" src="assets/js/pnotify/pnotify.custom.min.js"></script>
-        <script type="text/javascript" src="js/classes/Notify.js"></script>
+        <script type="text/javascript" src="js/ui/Notify.js"></script>
         <script>
             // enable tooltips
             $('.tooltip-me').tooltip();
