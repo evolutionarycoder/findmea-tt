@@ -12,7 +12,6 @@
     use Exception;
 
     abstract class Database {
-        const ENV      = "local";
         const ACTION_TYPE = 'type';
         /**
          * @var bool Flag to see if a connection has already been made
@@ -448,12 +447,12 @@
         protected function clean($obj) {
             foreach ($obj as $key => $val) {
                 if (!is_object($val) && !is_array($val)) {
-                    $obj->$key = htmlentities(mysqli_real_escape_string($this->connection, $val), ENT_QUOTES);
+                    $obj->$key = $this->cleanString($val);
                 }
             }
         }
 
-        protected function cleanString($string){
+        protected function cleanString($string) {
             return htmlentities(mysqli_real_escape_string($this->connection, $string), ENT_QUOTES);
         }
 
