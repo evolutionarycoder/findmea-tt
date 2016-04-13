@@ -45,6 +45,16 @@
             }
 
 
+            .button-demo, .progress-demo {
+                display: inline-block;
+                margin-right: 3px;
+                margin-bottom: 20px;
+            }
+
+            [data-error] {
+                display : none;
+            }
+
             /* 1001 max width*/
             .form-horizontal .control-label {
                 text-align : left;
@@ -121,12 +131,14 @@
                             </form>
                             <a class="forgotLnk" href="index.html"></a>
                             <div class="or-box">
-                                <center><span class="text-center login-with">Login or <b><a href="#" class="create-new-account">Sign Up</a></b></span></center>
+                                <center><span class="text-center login-with">Login or <b><a href="#"
+                                                                                            class="create-new-account">Sign
+                                    Up</a></b></span></center>
                             </div>
                             <div class="row">
-                                <div class="col-md-12 row-block">
+                                <div class="col-md-12 row-block button-demo">
                                     <a href="#" data-style="zoom-in"
-                                       class="create-new-account btn btn-primary btn-block">Create
+                                       class="create-new-account btn btn-primary btn-block ladda-button">Create
                                         New Account</a>
                                 </div>
                             </div>
@@ -217,7 +229,7 @@
 
                                 <div id="wizard_vertical">
 
-                                    <h2>Type</h2>
+                                    <h2>Account Type</h2>
                                     <section>
                                         <div class="row">
 
@@ -225,7 +237,7 @@
                                                 <div class="plan">
                                                     <h3 class="plan-title">Personal</h3>
                                                     <p>Average User</p>
-                                                    <a href="#" class="plan-button">Choose Plan</a>
+                                                    <a href="#" data-id="1" class="plan plan-button" style="background-color: #5CB85C !important;">Choose Plan</a>
                                                 </div>
 
                                             </div>
@@ -235,52 +247,46 @@
                                                 <div class="plan">
                                                     <h3 class="plan-title">Business</h3>
                                                     <p>Business User</p>
-                                                    <a href="#" class="plan-button">Choose Plan</a>
+                                                    <a href="#" data-id="2" class="plan plan-button">Choose Plan</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </section>
 
 
-                                    <h2>First Step</h2>
+                                    <h2>Personal</h2>
                                     <section>
                                         <div class="form_center">
 
                                             <form role="form" class="form-horizontal">
 
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-sm-2 control-label">First
-                                                        Name</label>
+                                                    <label class="col-lg-2 col-sm-2 control-label">
+                                                        First Name</label>
                                                     <div class="col-lg-10">
-                                                        <input type="text" placeholder="First Name"
+                                                        <input type="text"
+                                                               id="step-fname"
+                                                               placeholder="First Name"
                                                                class="form-control">
-                                                        <p data-error="fname" class="help-block text-danger">Example
+                                                        <p data-error="step-fname" class="help-block text-danger">Example
                                                             block-level
                                                             help text here.</p>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-sm-2 control-label">Last
-                                                        Name</label>
+                                                    <label class="col-lg-2 col-sm-2 control-label">
+                                                        Last Name
+                                                    </label>
                                                     <div class="col-lg-10">
-                                                        <input type="text" placeholder="Last Name"
+                                                        <input type="text"
+                                                               id="step-lname"
+                                                               placeholder="Last Name"
                                                                class="form-control">
-                                                        <p data-error="lname" class="help-block text-danger">Example
+                                                        <p data-error="step-lname" class="help-block text-danger">Example
                                                             block-level
                                                             help text here.</p>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-sm-2 control-label" for="photo">Profile Photo</label>
-                                                    <div class="col-lg-10">
-                                                        <input type="file" placeholder="Last Name" id="photo"
-                                                               class="form-control">
-                                                        <p data-error="lname" class="help-block text-danger">Example
-                                                            block-level
-                                                            help text here.</p>
-                                                    </div>
-                                                </div>
-
                                             </form>
 
                                         </div>
@@ -291,11 +297,13 @@
                                         <form role="form" class="form-horizontal">
 
                                             <div class="form-group">
-                                                <label class="col-lg-2 col-sm-2 control-label" >Email</label>
+                                                <label class="col-lg-2 col-sm-2 control-label">Email</label>
                                                 <div class="col-lg-10">
-                                                    <input type="email" placeholder="example@example.com"
+                                                    <input type="email"
+                                                           id="step-email"
+                                                           placeholder="example@example.com"
                                                            class="form-control">
-                                                    <p data-error="fname" class="help-block text-danger">Example
+                                                    <p data-error="step-email" class="help-block text-danger">Example
                                                         block-level
                                                         help text here.</p>
                                                 </div>
@@ -304,19 +312,18 @@
                                                 <label class="col-lg-2 col-sm-2 control-label">Password</label>
                                                 <div class="col-lg-10">
                                                     <input type="password"
+                                                           id="step-password"
                                                            class="form-control">
-                                                    <p data-error="lname" class="help-block text-danger">Example
-                                                        block-level
-                                                        help text here.</p>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 col-sm-2 control-label" for="photo">Retype
+                                                <label class="col-lg-2 col-sm-2 control-label" for="step-retype">Retype
                                                     Password</label>
                                                 <div class="col-lg-10">
-                                                    <input type="password" placeholder="Last Name"
+                                                    <input type="password"
+                                                           id="step-retype"
                                                            class="form-control">
-                                                    <p data-error="lname" class="help-block text-danger">Example
+                                                    <p data-error="step-password" class="help-block text-danger">Example
                                                         block-level
                                                         help text here.</p>
                                                 </div>
@@ -358,7 +365,8 @@
         <script src="auth/assets/js/button/ladda/spin.min.js"></script>
         <script src="auth/assets/js/button/ladda/ladda.min.js"></script>
 
-        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBu8QNl3aC1KLq9J_KnNHauIZvfRsQTSlg" type="text/javascript"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBu8QNl3aC1KLq9J_KnNHauIZvfRsQTSlg"
+                type="text/javascript"></script>
         <script type="text/javascript" src="auth/assets/js/map/gmap3.js"></script>
         <script type="text/javascript">
             $(function () {
@@ -416,10 +424,12 @@
         <script type="text/javascript" src="auth/assets/js/wizard/build/jquery.steps.js"></script>
 
         <!--Notifications-->
-        <!-- PLUG IN -->
         <script type="text/javascript" src="auth/assets/js/pnotify/pnotify.custom.min.js"></script>
-        <!-- Notification -->
-        <script type="text/javascript" src="auth/js/classes/Notify.js"></script>
+        <script src="auth/js/ui/DomManipulation.js"></script>
+        <script type="text/javascript" src="auth/js/ui/Notify.js"></script>
+
+        <script src="auth/js/http/Response.js"></script>
+        <script src="auth/js/http/Manager.js"></script>
 
         <!-- Page Script -->
         <script src="auth/js/login.js"></script>
