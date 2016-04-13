@@ -66,6 +66,7 @@
     var createNewAccount = $(".create-new-account"),
         loginWrapper     = $(".login-wrapper.login"),
         createWrapper    = $(".login-wrapper.create"),
+        logInBtn         = $('#login'),
         manage           = HttpManager('users/index.php'),
         wizard,
         selectedPlan     = 1,
@@ -78,6 +79,7 @@
             if (response.statusOk()) {
                 laddaBtns.forEach(function (laddaBtn) {
                     laddaBtn.stop();
+                    laddaBtn.remove();
                 });
                 $('.create-btn').text('Created Successfully');
                 $('#inputUsernameEmail').val(values.email);
@@ -239,5 +241,43 @@
     $('#cancel-smallscreen').click(function (e) {
         e.preventDefault();
         cancel();
+    });
+
+    //login user
+    logInBtn.click(function (e) {
+        e.preventDefault();
+        var ladda = Ladda.create(document.querySelector('#login')),
+            data  = {
+                email   : $('#inputUsernameEmail').val(),
+                password: $('#inputPassword').val(),
+                type    : 'login'
+            };
+
+        if (typeof Validate(data.email.trim()).email() === 'string') {
+            Notify('Log In', 'Invalid Email Address').error();
+            return;
+        }
+        if (data.password.trim() === '') {
+            Notify('Log In', 'Enter a password').error();
+            return;
+        }
+
+        ladda.start();
+
+        manage.request(data, function (serverResponse) {
+            var response = Response(serverResponse);
+            if (response.statusOk()) {
+                ladda.stop();
+                Notify('Log In', 'Successful! Redirecting you now!').success();
+                Dom.delay(3000, function () {
+                    window.location = 'auth/';
+                });
+            } else {
+                ladda.stop();
+                Notify('Log In', response.getText()).error();
+            }
+            ladda.remove();
+        })
+
     });
 })();
