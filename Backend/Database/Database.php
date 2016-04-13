@@ -43,6 +43,7 @@
          */
         private $tables = [
             "account_type",
+            "business_types",
             "comments",
             "likes",
             "locations",
