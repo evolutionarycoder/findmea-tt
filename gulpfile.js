@@ -8,10 +8,20 @@ var paths = require('./config.js');
 
 // paths
 gulp.task('render-site', function () {
-    return gulp.src(paths.pages)
+    return gulp.src(paths.pages.site)
         .pipe(render({
             path: paths.templates
         }))
         .pipe(ext_replace('.php'))
         .pipe(gulp.dest('./auth/'));
+});
+
+// paths
+gulp.task('render-blog', function () {
+    return gulp.src(paths.pages.blog)
+        .pipe(render({
+            path: paths.templates
+        }))
+        .pipe(ext_replace('.php'))
+        .pipe(gulp.dest('./auth/blog/'));
 });

@@ -1,8 +1,13 @@
 var templateRoot = "./templates/";
 module.exports   = {
-    pages   : [
-        templateRoot + "/pages/**/*.*"
-    ],
+    pages   : {
+        site : [
+            templateRoot + "/pages/site/**/*.*"
+        ],
+        blog : [
+            templateRoot + "/pages/blog/**/*.*"
+        ]
+    },
     templates: [
         templateRoot + "/main/",
         templateRoot + "/partials/"
