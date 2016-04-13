@@ -28,18 +28,17 @@
     };
 
     Notification.prototype = {
-        success: function (sticky) {
-            var self = this;
-            createNotification.call(this, "success", sticky);
+        success: function () {
+            createNotification.call(this, "success", this.sticky);
         },
-        notice : function (sticky) {
-            createNotification.call(this, null, sticky);
+        notice : function () {
+            createNotification.call(this, null, this.sticky);
         },
-        info   : function (sticky) {
-            createNotification.call(this, "info", sticky);
+        info   : function () {
+            createNotification.call(this, "info", this.sticky);
         },
-        error  : function (sticky) {
-            createNotification.call(this, "error", sticky);
+        error  : function () {
+            createNotification.call(this, "error", this.sticky);
         }
     };
 
