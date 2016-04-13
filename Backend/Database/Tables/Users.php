@@ -17,7 +17,7 @@
 
         const TABLE_NAME = "users";
 
-        private $accId, $password, $fname, $lname, $email, $photo;
+        private $accId, $password, $fname, $lname, $email, $folderPrefix, $photo;
 
         public function __construct($mysqli = false) {
             parent::__construct($mysqli);
@@ -29,6 +29,7 @@
                 "fname",
                 "lname",
                 "email",
+                "folder_prefix",
                 "photo"
             ]);
 
@@ -43,7 +44,7 @@
             ]);
             $this->deletePreparedStatement($table);
 
-            $this->c->bind_param("isssss", $this->accId, $this->password, $this->fname, $this->lname, $this->email, $this->photo);
+            $this->c->bind_param("issssss", $this->accId, $this->password, $this->fname, $this->lname, $this->email, $this->folderPrefix, $this->photo);
 
             $this->r->bind_param("i", $this->id);
             $this->u->bind_param("isssssi", $this->accId, $this->password, $this->fname, $this->lname, $this->email, $this->photo, $this->id);
@@ -59,15 +60,18 @@
         public function create($obj) {
             if (is_object($obj) && $obj instanceof User) {
                 $this->clean($obj);
-                $this->accId    = $obj->getId();
-                $this->password = $obj->getPassword();
-                $this->fname    = $obj->getFname();
-                $this->lname    = $obj->getLname();
-                $this->email    = $obj->getEmail();
-                $this->photo    = $obj->getPhoto();
+                $this->accId        = $obj->getAccountTypeId();
+                $this->password     = $obj->getPassword();
+                $this->fname        = $obj->getFname();
+                $this->lname        = $obj->getLname();
+                $this->email        = $obj->getEmail();
+                $this->folderPrefix = $obj->getFolderPrefix();
+                $this->photo        = $obj->getPhoto();
 
                 if ($this->c->execute()) {
                     return $this->c->insert_id;
+                } else {
+                    echo $this->c->error;
                 }
             }
 
@@ -83,9 +87,19 @@
             return parent::read($id);
         }
 
+        public function emailExists($email) {
+            $email  = $this->cleanString($email);
+            $query  = "select * from users  where email = '{$email}';";
+            $result = mysqli_query($this->connection, $query);
+            if (mysqli_num_rows($result) > 0) {
+                return true;
+            }
+
+            return false;
+        }
 
         protected function createObjFromRow($row) {
-            $user = new User($row->id, $row->account_type_id, null, null, $row->fname, $row->lname, $row->email, $row->password, $row->photo);
+            $user = new User($row->id, $row->account_type_id, null, null, $row->fname, $row->lname, $row->email, $row->password, $row->folder_prefix, $row->photo);
 
             $accountTable = new AccountTypes($this->getConnection());
             $account      = $accountTable->read($user->getId());
@@ -145,11 +159,12 @@
                     $this->email    = $this->isNull($obj->getEmail(), $old->getEmail());
                     $this->photo    = $this->isNull($obj->getPhoto(), $old->getPhoto());
 
-                    if($this->u->execute()){
+                    if ($this->u->execute()) {
                         return true;
                     }
                 }
             }
+
             return false;
         }
 
