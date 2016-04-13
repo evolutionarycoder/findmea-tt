@@ -8,23 +8,25 @@
 
     require '../../Backend/vendor/autoload.php';
 
+    use Backend\Database\Database;
     use Backend\Database\Schemas\User;
     use Backend\Database\Tables\Users;
+    use Backend\FileSystem\FileSystem;
     use Backend\ServerResponse\Response;
     use Backend\ServerResponse\UserResponse;
 
-    $global = require '../global.php';
-    $table  = new Users();
-
-    $response = new UserResponse(Response::STATUS_FAIL, Response::FAIL_TEXT);
+    $global    = require '../global.php';
+    $directory = new FileSystem();
+    $table     = new Users();
+    $response  = new UserResponse(Response::STATUS_FAIL, Response::FAIL_TEXT);
 
     if (isset($_POST['type'])) {
-        $type     = trim($_POST['type']);
-        $lname    = trim($_POST['lname']);
-        $fname    = trim($_POST['fname']);
-        $email    = trim($_POST['email']);
-        $password = trim($_POST['password']);
-        $account  = (int)trim($_POST['account']);
+        $type     = trim($_POST[Database::ACTION_TYPE]);
+        $fname    = trim($_POST[Users::FNAME]);
+        $lname    = trim($_POST[Users::LNAME]);
+        $email    = trim($_POST[Users::EMAIL]);
+        $password = trim($_POST[Users::PASSWORD]);
+        $account  = (int)trim($_POST[Users::ACTION_TYPE]);
 
         if ($table->emailExists($email)) {
             $response->setText('Email Already Exists');
@@ -32,16 +34,17 @@
         }
 
         if ($type === "create") {
-            $directory = $global['root_dir'] . "/system/users/{$fname}.{$lname}.{$email}";
-            $user      = new User(null, $account, null, null, $fname, $lname, $email, $password, "{$fname}.{$lname}.{$email}");
+            $prefix = $fname . $lname . $email;
+            $dir    = "system/users/{$prefix}";
+            $user   = new User(null, $account, null, null, $fname, $lname, $email, $password, $prefix);
             // if user directory is created
-            if (mkdir($directory)) {
+            if ($directory->mkdir($dir)) {
                 $id = $table->create($user);
                 if (is_numeric($id)) {
                     $response->setStatus(Response::STATUS_OK);
                     $response->setText(Response::OK_TEXT);
                 } else {
-                    rmdir($directory);
+                    $directory->rmdir($dir);
                 }
             }
         }
