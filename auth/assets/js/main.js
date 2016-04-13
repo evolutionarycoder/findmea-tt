@@ -1,20 +1,21 @@
+var pref = prefix || '';
 //Sliding Effect Control
-head.js("auth/assets/js/skin-select/jquery.cookie.js");
-head.js("auth/assets/js/skin-select/skin-select.js");
+head.js(pref + "assets/js/skin-select/jquery.cookie.js");
+head.js(pref + "assets/js/skin-select/skin-select.js");
 
 //Showing Date
-head.js("auth/assets/js/clock/date.js");
+head.js(pref + "assets/js/clock/date.js");
 
 //Bootstrap
 //head.js("auth/assets/js/bootstrap.js");
 
 //NEWS STICKER
-head.js("auth/assets/js/newsticker/jquery.newsTicker.js", function() {
+head.js(pref + "assets/js/newsticker/jquery.newsTicker.js", function () {
 
     var nt_title = $('#nt-title').newsTicker({
-        row_height: 18,
-        max_rows: 1,
-        duration: 5000,
+        row_height  : 18,
+        max_rows    : 1,
+        duration    : 5000,
         pauseOnHover: 0
     });
 
@@ -26,25 +27,25 @@ head.js("auth/assets/js/newsticker/jquery.newsTicker.js", function() {
 
 ////Acordion and Sliding menu
 
-head.js("auth/assets/js/custom/scriptbreaker-multiple-accordion-1.js", function() {
+head.js(pref + "assets/js/custom/scriptbreaker-multiple-accordion-1.js", function () {
 
     $(".topnav").accordionze({
         accordionze: true,
-        speed: 500,
-        closedSign: '<img src="auth/assets/img/plus.png">',
-        openedSign: '<img src="auth/assets/img/minus.png">'
+        speed      : 500,
+        closedSign : '<img src="' + pref + 'assets/img/plus.png">',
+        openedSign : '<img src="' + pref + 'assets/img/minus.png">'
     });
 
 });
 
 ////Right Sliding menu
 
-head.js("auth/assets/js/slidebars/slidebars.min.js", "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", function() {
+head.js(pref + "assets/js/slidebars/slidebars.min.js", "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", function () {
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         var mySlidebars = new $.slidebars();
 
-        $('.toggle-left').on('click', function() {
+        $('.toggle-left').on('click', function () {
             mySlidebars.toggle('right');
         });
     });
@@ -53,60 +54,58 @@ head.js("auth/assets/js/slidebars/slidebars.min.js", "http://cdnjs.cloudflare.co
 //-------------------------------------------------------------
 
 //SEARCH MENU
-head.js("auth/assets/js/search/jquery.quicksearch.js", function() {
+head.js(pref + "assets/js/search/jquery.quicksearch.js", function () {
 
     $('input.id_search').quicksearch('#menu-showhide li, .menu-left-nest li');
-   
-   
+
 
 });
 //-------------------------------------------------------------
 
 
-
 //EASY PIE CHART
-head.js("auth/assets/js/gage/jquery.easypiechart.min.js", function() {
+head.js(pref + "assets/js/gage/jquery.easypiechart.min.js", function () {
 
-    $(function() {
+    $(function () {
 
 
         $('.chart').easyPieChart({
-            easing: 'easeOutBounce',
+            easing    : 'easeOutBounce',
             trackColor: '#ffffff',
             scaleColor: '#ffffff',
-            barColor: '#FF0064',
-            onStep: function(from, to, percent) {
+            barColor  : '#FF0064',
+            onStep    : function (from, to, percent) {
                 $(this.el).find('.percent').text(Math.round(percent));
             }
         });
         var chart = window.chart = $('.chart').data('easyPieChart');
-        $('.js_update').on('click', function() {
+        $('.js_update').on('click', function () {
             chart.update(Math.random() * 100);
         });
 
         $('.speed-car').easyPieChart({
-            easing: 'easeOutBounce',
+            easing    : 'easeOutBounce',
             trackColor: 'rgba(0,0,0,0.3)',
             scaleColor: 'transparent',
-            barColor: '#0085DF',
+            barColor  : '#0085DF',
 
             lineWidth: 8,
-            onStep: function(from, to, percent) {
+            onStep   : function (from, to, percent) {
                 $(this.el).find('.percent2').text(Math.round(percent));
             }
         });
         var chart = window.chart = $('.chart2').data('easyPieChart');
-        $('.js_update').on('click', function() {
+        $('.js_update').on('click', function () {
             chart.update(Math.random() * 100);
         });
         $('.overall').easyPieChart({
-            easing: 'easeOutBounce',
+            easing    : 'easeOutBounce',
             trackColor: 'rgba(0,0,0,0.3)',
             scaleColor: '#323A45',
-            lineWidth: 35,
-            lineCap: 'butt',
-            barColor: '#FFB900',
-            onStep: function(from, to, percent) {
+            lineWidth : 35,
+            lineCap   : 'butt',
+            barColor  : '#FFB900',
+            onStep    : function (from, to, percent) {
                 $(this.el).find('.percent3').text(Math.round(percent));
             }
         });
@@ -117,7 +116,7 @@ head.js("auth/assets/js/gage/jquery.easypiechart.min.js", function() {
 
 //TOOL TIP
 
-head.js("auth/assets/js/tip/jquery.tooltipster.js", function() {
+head.js(pref + "assets/js/tip/jquery.tooltipster.js", function () {
 
     $('.tooltip-tip-x').tooltipster({
         position: 'right'
@@ -125,20 +124,20 @@ head.js("auth/assets/js/tip/jquery.tooltipster.js", function() {
     });
 
     $('.tooltip-tip').tooltipster({
-        position: 'right',
+        position : 'right',
         animation: 'slide',
-        theme: '.tooltipster-shadow',
-        delay: 1,
-        offsetX: '-12px',
-        onlyOne: true
+        theme    : '.tooltipster-shadow',
+        delay    : 1,
+        offsetX  : '-12px',
+        onlyOne  : true
 
     });
     $('.tooltip-tip2').tooltipster({
-        position: 'right',
+        position : 'right',
         animation: 'slide',
-        offsetX: '-12px',
-        theme: '.tooltipster-shadow',
-        onlyOne: true
+        offsetX  : '-12px',
+        theme    : '.tooltipster-shadow',
+        onlyOne  : true
 
     });
     $('.tooltip-top').tooltipster({
@@ -154,17 +153,16 @@ head.js("auth/assets/js/tip/jquery.tooltipster.js", function() {
         position: 'bottom'
     });
     $('.tooltip-reload').tooltipster({
-        position: 'right',
-        theme: '.tooltipster-white',
+        position : 'right',
+        theme    : '.tooltipster-white',
         animation: 'fade'
     });
     $('.tooltip-fullscreen').tooltipster({
-        position: 'left',
-        theme: '.tooltipster-white',
+        position : 'left',
+        theme    : '.tooltipster-white',
         animation: 'fade'
     });
     //For icon tooltip
-
 
 
 });
@@ -172,13 +170,13 @@ head.js("auth/assets/js/tip/jquery.tooltipster.js", function() {
 
 //NICE SCROLL
 
-head.js("auth/assets/js/nano/jquery.nanoscroller.js", function() {
+head.js(pref + "assets/js/nano/jquery.nanoscroller.js", function () {
 
     $(".nano").nanoScroller({
         //stop: true 
-        scroll: 'top',
-        scrollTop: 0,
-        sliderMinHeight: 40,
+        scroll              : 'top',
+        scrollTop           : 0,
+        sliderMinHeight     : 40,
         preventPageScrolling: true
         //alwaysVisible: false
 
@@ -188,16 +186,12 @@ head.js("auth/assets/js/nano/jquery.nanoscroller.js", function() {
 //------------------------------------------------------------- 
 
 
-
-
-
-
-//------------------------------------------------------------- 
+//-------------------------------------------------------------
 //PAGE LOADER
-head.js("auth/assets/js/pace/pace.js", function() {
+head.js(pref + "assets/js/pace/pace.js", function () {
 
     paceOptions = {
-        ajax: false, // disabled
+        ajax    : false, // disabled
         document: false, // disabled
         eventLag: false, // disabled
         elements: {
@@ -210,59 +204,59 @@ head.js("auth/assets/js/pace/pace.js", function() {
 //------------------------------------------------------------- 
 
 //SPARKLINE CHART
-head.js("auth/assets/js/chart/jquery.sparkline.js", function() {
+head.js(pref + "assets/js/chart/jquery.sparkline.js", function () {
 
-    $(function() {
+    $(function () {
         $('.inlinebar').sparkline('html', {
-            type: 'bar',
-            barWidth: '8px',
-            height: '30px',
+            type      : 'bar',
+            barWidth  : '8px',
+            height    : '30px',
             barSpacing: '2px',
-            barColor: '#A8BDCF'
+            barColor  : '#A8BDCF'
         });
         $('.linebar').sparkline('html', {
-            type: 'bar',
-            barWidth: '5px',
-            height: '30px',
+            type      : 'bar',
+            barWidth  : '5px',
+            height    : '30px',
             barSpacing: '2px',
-            barColor: '#44BBC1'
+            barColor  : '#44BBC1'
         });
         $('.linebar2').sparkline('html', {
-            type: 'bar',
-            barWidth: '5px',
-            height: '30px',
+            type      : 'bar',
+            barWidth  : '5px',
+            height    : '30px',
             barSpacing: '2px',
-            barColor: '#AB6DB0'
+            barColor  : '#AB6DB0'
         });
         $('.linebar3').sparkline('html', {
-            type: 'bar',
-            barWidth: '5px',
-            height: '30px',
+            type      : 'bar',
+            barWidth  : '5px',
+            height    : '30px',
             barSpacing: '2px',
-            barColor: '#19A1F9'
+            barColor  : '#19A1F9'
         });
     });
 
-    $(function() {
-        var sparklineLogin = function() {
+    $(function () {
+        var sparklineLogin = function () {
             $('#sparkline').sparkline(
                 [5, 6, 7, 9, 9, 5, 3, 2, 2, 4, 6, 7], {
-                    type: 'line',
-                    width: '100%',
-                    height: '25',
-                    lineColor: '#ffffff',
-                    fillColor: '#0DB8DF',
-                    lineWidth: 1,
-                    spotColor: '#ffffff',
-                    minSpotColor: '#ffffff',
-                    maxSpotColor: '#ffffff',
+                    type              : 'line',
+                    width             : '100%',
+                    height            : '25',
+                    lineColor         : '#ffffff',
+                    fillColor         : '#0DB8DF',
+                    lineWidth         : 1,
+                    spotColor         : '#ffffff',
+                    minSpotColor      : '#ffffff',
+                    maxSpotColor      : '#ffffff',
                     highlightSpotColor: '#ffffff',
                     highlightLineColor: '#ffffff'
                 }
             );
         }
         var sparkResize;
-        $(window).resize(function(e) {
+        $(window).resize(function (e) {
             clearTimeout(sparkResize);
             sparkResize = setTimeout(sparklineLogin, 500);
         });
@@ -275,12 +269,12 @@ head.js("auth/assets/js/chart/jquery.sparkline.js", function() {
 //------------------------------------------------------------- 
 
 //DIGITAL CLOCK
-head.js("auth/assets/js/clock/jquery.clock.js", function() {
+head.js(pref + "assets/js/clock/jquery.clock.js", function () {
 
     //clock
     $('#digital-clock').clock({
         offset: '+5',
-        type: 'digital'
+        type  : 'digital'
     });
 
 
