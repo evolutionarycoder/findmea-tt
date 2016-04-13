@@ -6,7 +6,6 @@ var gulp        = require('gulp'),
 // configuration
 var paths = require('./config.js');
 
-// paths
 gulp.task('render-site', function () {
     return gulp.src(paths.pages.site)
         .pipe(render({
@@ -16,7 +15,6 @@ gulp.task('render-site', function () {
         .pipe(gulp.dest('./auth/'));
 });
 
-// paths
 gulp.task('render-blog', function () {
     return gulp.src(paths.pages.blog)
         .pipe(render({
@@ -24,4 +22,7 @@ gulp.task('render-blog', function () {
         }))
         .pipe(ext_replace('.php'))
         .pipe(gulp.dest('./auth/blog/'));
+});
+
+gulp.task('render-all', ['render-blog', 'render-site'], function () {
 });
