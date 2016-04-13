@@ -13,7 +13,7 @@
 
     abstract class Database {
         const ENV      = "local";
-        const DOC_ROOT = '';
+        const ACTION_TYPE = 'type';
         /**
          * @var bool Flag to see if a connection has already been made
          */

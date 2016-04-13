@@ -15,7 +15,12 @@
 
     class Users extends Database {
 
-        const TABLE_NAME = "users";
+        const TABLE_NAME   = "users";
+        const LNAME        = 'lname';
+        const FNAME        = 'fname';
+        const EMAIL        = 'email';
+        const PASSWORD     = 'password';
+        const ACCOUNT_TYPE = 'account';
 
         private $accId, $password, $fname, $lname, $email, $folderPrefix, $photo;
 
