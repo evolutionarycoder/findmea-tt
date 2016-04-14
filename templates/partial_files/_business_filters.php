@@ -2,7 +2,7 @@
     use Backend\Database\Tables\BusinessTypes;
 
     function createBusinessTypeListItem($id, $name, $icon) {
-        echo "<li data-id='{$id}'>
+        echo "<li data-id='{$id}' data-name='{$name}' data-type-icon='{$icon}'>
                 <a href=\"#\">
                     <span class=\"{$icon} margin-iconic\"></span>{$name}
                 </a>
