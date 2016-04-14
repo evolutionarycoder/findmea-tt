@@ -9,7 +9,7 @@ var MapFilter = function (map) {
         if ($.isNumeric(business_id)) {
             map.findMarker(function (marker) {
                 if (business_id !== 0) {
-                    if (marker['businessId'] !== business_id) {
+                    if (marker['businessType'] !== business_id) {
                         this.hide(marker);
                     } else {
                         this.show(marker);
@@ -38,6 +38,8 @@ var MapFilter = function (map) {
                         this.show(marker);
                     }
                 }
+            } else {
+                this.show(marker);
             }
         });
     });
