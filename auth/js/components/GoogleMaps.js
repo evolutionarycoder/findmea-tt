@@ -2,9 +2,14 @@
  * Created by Daniel M. Prince on 4/11/16.
  */
 (function (global) {
+    // private properties
+    var marker_num        = -1,
+        marker_properties = {
+            unique_id: 'marker_position'
+        };
 
     // private methods
-    var createMap = function (element) {
+    var createMap   = function (element) {
             return new google.maps.Map(document.querySelector(element), {
                 center: {
                     lat: 10.536421,
@@ -13,7 +18,10 @@
                 zoom  : 9
             });
         },
-        iterate   = function (array, cb, cond) {
+        getMarkerId = function () {
+            return ++marker_num;
+        },
+        iterate     = function (array, cb, cond) {
             for (var i = 0; i < array.length; i++) {
                 if (cond) {
                     return;
@@ -39,11 +47,14 @@
          * @param {string} listenerType
          * @param {callback} callback
          */
-        addMarker : function (latLong, title, metadata, otherOptions, listenerType, callback) {
+        addMarker  : function (latLong, title, metadata, otherOptions, listenerType, callback) {
             Marker(this).add(latLong, title, metadata, otherOptions, listenerType, callback);
         },
-        findMarker: function (cb) {
+        findMarker : function (cb) {
             return Marker(this).find(cb);
+        },
+        addListener: function (listener, callback) {
+            this.map.addListener(listener, callback.bind(this));
         }
     };
 
@@ -73,6 +84,8 @@
                 title   : title
             };
 
+            metadata[marker_properties.unique_id] = getMarkerId();
+
             if (otherOptions) {
                 $.extend(options, otherOptions);
             }
@@ -85,8 +98,6 @@
             if (callback) {
                 marker.addListener(listener, callback);
             }
-
-
             marker.setMap(this.GoogleMaps.map);
             this.GoogleMaps.markers.push(marker);
             return this;
