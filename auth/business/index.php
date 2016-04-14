@@ -58,6 +58,7 @@
         </style>
 
 
+
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -429,12 +430,6 @@
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                             <span>Add Business</span></a>
                                     </li>
-
-                                    <li>
-                                        <a class="tooltip-tip2" href="#" title="Remove Business">
-                                            <i class="fa fa-minus" aria-hidden="true"></i>
-                                            <span>Remove Business</span></a>
-                                    </li>
                                     <li>
                                         <a class="tooltip-tip2" href="#" title="Manage Businesses">
                                             <i class="fa fa-list" aria-hidden="true"></i>
@@ -693,7 +688,7 @@
                                             of business do not submit it.
                                         </p>
                                     </div>
-                                </div>
+                    </div>
                                 <div class="form-group text-center">
                                     <div class="col-md-12">
                                         <a href="#" class="btn btn-danger" data-style="zoom-in">
@@ -704,8 +699,8 @@
                                            data-style="zoom-in">
                                             Create
                                         </a>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
                             </fieldset>
                         </form>
                     </div>
@@ -934,8 +929,8 @@
                         } else {
                             Notify('Error', 'Something Happened! Try again later or contact support').error();
                         }
-                        ladda.stop();
-                        ladda.remove();
+                    ladda.stop();
+                    ladda.remove();
                     });
 
                 }

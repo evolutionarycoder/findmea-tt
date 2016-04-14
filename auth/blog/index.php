@@ -426,12 +426,6 @@
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                             <span>Add Business</span></a>
                                     </li>
-
-                                    <li>
-                                        <a class="tooltip-tip2" href="#" title="Remove Business">
-                                            <i class="fa fa-minus" aria-hidden="true"></i>
-                                            <span>Remove Business</span></a>
-                                    </li>
                                     <li>
                                         <a class="tooltip-tip2" href="#" title="Manage Businesses">
                                             <i class="fa fa-list" aria-hidden="true"></i>
