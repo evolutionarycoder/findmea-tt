@@ -612,12 +612,11 @@
 
                         </div>
                         <div class="col-sm-2">
+
                             <div class="devider-vertical visible-lg"></div>
                             <div class="btn-group btn-wigdet pull-right visible-lg">
                                 <div class="btn">
-                                    
-    Filter
-
+                                    Filter
                                 </div>
                                 <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
                                     <span class="caret"></span>
@@ -625,7 +624,6 @@
                                 </button>
                                 <!-- Dropdown Rop Right -->
                                 <ul role="menu" id="dropdown-tr" class="dropdown-menu">
-
                                     <?php
 
                                         function createBusinessTypeListItem($id, $name, $icon) {
@@ -644,7 +642,6 @@
                                             createBusinessTypeListItem($c->getId(), $c->getName(), $c->getIcon());
                                         }
                                     ?>
-
                                 </ul>
                             </div>
 
@@ -1158,6 +1155,8 @@
         <script>
             var prefix;
         </script>
+
+
         <script type="text/javascript" src="assets/js/main.js"></script>
 
         <!-- Button Styles -->
