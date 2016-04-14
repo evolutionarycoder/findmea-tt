@@ -45,6 +45,7 @@
         <link rel="stylesheet" href="assets/css/loader-style.css">
         <link rel="stylesheet" href="assets/css/bootstrap.css">
 
+        <link rel="stylesheet" href="css/animate.min.css">
         <link rel="stylesheet" href="css/utility.css">
 
         
@@ -635,8 +636,6 @@
             </li>";
                                         }
 
-                                        require $_SERVER['DOCUMENT_ROOT'] . '/Backend/vendor/autoload.php';
-
                                         $table        = new BusinessTypes();
                                         $businessData = $table->readAll();
                                         createBusinessTypeListItem(0, 'All', 'entypo-plus-circled');
@@ -671,7 +670,8 @@
                     <li class="pull-right">
                         <div class="input-group input-widget">
 
-                            <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
+                            <input style="border-radius:15px" type="text" id="search-map" placeholder="Search..."
+                                   class="form-control">
                         </div>
                     </li>
                 </ul>
@@ -1076,14 +1076,15 @@
                     <span class=""><i class="fa fa-info" aria-hidden="true"></i></span>&nbsp;Business
                     Information</h6>
                 <div class="titleToggle">
-                    <a class="nav-toggle-alt" href="#business-card-info">
+                    <a class="nav-toggle-alt" data-open="false" id="toggleBusinessCard" href="#business-card-info">
                         <span class="entypo-up-open"></span>
                     </a>
                 </div>
             </div>
-            <div id="business-card-info" style="min-height:296px;padding-top:0;display: none" class="body-nest">
+            <div id="business-card-info" style="min-height:296px;padding-top:0;display: none"
+                 class="body-nest animated">
                 <div class="row text-center bg-info" style="color: #FFF">
-                    <h4>Seafood Cusine</h4>
+                    <h4 id="business-name">Seafood Cusine</h4>
                 </div>
                 <div class="row" style="margin-top: 5px">
                     <div class="btn-group" style="width: 100%; margin-left: 10px">
@@ -1103,6 +1104,12 @@
                                data-placement="top" title="Favourite this place">
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                             </a>
+                            <a style="margin-right: 20px" href="#"
+                               class="tooltip-me text-white btn btn-info"
+                               data-toggle="tooltip"
+                               data-placement="top" title="Like">
+                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                            </a>
 
                             <a style="margin-right: 20px" href="#"
                                class="tooltip-me text-white btn btn-danger pull-right"
@@ -1119,126 +1126,24 @@
                     <div class="col-sm-3"
                          style="background: #F0F0F0; color: #5BC0DE; padding: 5px; border-radius: 5px">
                         <h4 style="margin-bottom: 5px; font-weight: bold;">Area</h4>
-                        <p style="color: #5BC0DE; padding: 0">
-                            Arouca
+                        <p id="business-area" style="color: #5BC0DE; padding: 0">
                         </p>
                         <h4 style="margin-bottom: 5px; font-weight: bold;">Phone</h4>
-                        <p style="color: #5BC0DE; padding: 0">
-                            123-4567
+                        <p id="business-phone" style="color: #5BC0DE; padding: 0">
                         </p>
                         <h4 style="margin-bottom: 5px; font-weight: bold;">Website</h4>
-                        <p style="color: #5BC0DE; padding: 0">
-                            http://example.com
+                        <p id="business-site" style="color: #5BC0DE; padding: 0">
                         </p>
                     </div>
                     <div class="col-sm-8 col-sm-push-1"
                          style="background: #F0F0F0; color: #5BC0DE; padding: 5px; border-radius: 5px">
                         <h4 style="margin-bottom: 5px;  font-weight: bold;">Description</h4>
-                        <p style="color: #5BC0DE; padding: 0">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dicta explicabo nihil
-                            obcaecati odio perferendis sit. Aut iusto laudantium molestiae molestias nisi similique.
-                            Dolorum illo molestiae nihil non suscipit voluptate!
+                        <p id="business-desc" style="color: #5BC0DE; padding: 0">
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div id="create-business" style="min-height:296px;padding-top:0;display: block; background-color: #fff"
-                 class="body-nest">
-
-                <div class="row" style='margin-top: 5px'>
-                    <div>
-                        <form role="form" class="form-horizontal">
-                            <div class="form-group m-lr-0">
-                                <div class="btn-group pull-left col-lg-4" style="margin: 0; !important;">
-                                    <div class="btn">
-                                        Type
-                                    </div>
-                                    <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <ul role="menu" class="dropdown-menu">
-                                        <li>
-                                            <a href="#">
-                                                <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="entypo-heart margin-iconic"></span>Favorite</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="entypo-cog margin-iconic"></span>Setting</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-8">
-                                    <input type="text" placeholder="Type" readonly
-                                           id="business-type"
-                                           class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group  m-lr-0">
-                                <div class="col-lg-12">
-                                    <input type="text"
-                                           id="business-name"
-                                           placeholder="Name"
-                                           class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group  m-lr-0">
-                                <div class="col-lg-12">
-                                    <input type="text"
-                                           id="business-area"
-                                           placeholder="Area"
-                                           class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group  m-lr-0">
-                                <div class="col-lg-12">
-                                    <input type="text"
-                                           id="business-phone"
-                                           placeholder="Phone"
-                                           class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group  m-lr-0">
-                                <div class="col-lg-12">
-                                    <input type="text"
-                                           id="business-website"
-                                           placeholder="Website"
-                                           class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group" style="margin-right: 0; margin-left: 0">
-                                <div class="col-lg-12">
-                                    <textarea id="business-description" placeholder="description" class="form-control"
-                                              rows="5"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group" style="margin-right: 0; margin-left: 0">
-                                <div class="col-lg-12">
-                                    <button class="btn btn-success pull-right" id="business-create" type="submit">
-                                        Create
-                                    </button>
-                                    <button
-                                        title="Your Location of your business will be using your current location. If your current location is not your place of business cancel this transaction"
-                                        class="m-r-5 btn btn-info tooltip-me pull-right" data-toggle="toggle"
-                                        type="submit">Help
-                                    </button>
-                                    <button class="btn btn-danger pull-left" id="business-cancel" type="submit">Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-
-                </div>
-
-
-            </div>
 
         </div>
     </div>
@@ -1261,6 +1166,10 @@
 
         <!-- DomManipulation -->
         <script type="text/javascript" src="js/ui/DomManipulation.js"></script>
+
+        <!-- httpmanager -->
+        <script type="text/javascript" src="js/http/Manager.js"></script>
+
 
         <!--Notifications PLUG IN-->
         <script type="text/javascript" src="assets/js/pnotify/pnotify.custom.min.js"></script>
@@ -1308,8 +1217,8 @@
         </script>
 
 
-        <script src="js/dashboard.js"></script>
-        <script src="js/business.js"></script>
+        <script src="js/components/MapFilter.js"></script>
+        <script src="js/pages/dashboard/dashboard.js"></script>
         <script
             src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBu8QNl3aC1KLq9J_KnNHauIZvfRsQTSlg&callback=initMap"
             async defer type="text/javascript">

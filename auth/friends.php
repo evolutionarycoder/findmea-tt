@@ -44,6 +44,7 @@
         <link rel="stylesheet" href="assets/css/loader-style.css">
         <link rel="stylesheet" href="assets/css/bootstrap.css">
 
+        <link rel="stylesheet" href="css/animate.min.css">
         <link rel="stylesheet" href="css/utility.css">
 
         
@@ -575,7 +576,8 @@
                     <li class="pull-right">
                         <div class="input-group input-widget">
 
-                            <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
+                            <input style="border-radius:15px" type="text" id="search-map" placeholder="Search..."
+                                   class="form-control">
                         </div>
                     </li>
                 </ul>
@@ -1802,6 +1804,10 @@
 
         <!-- DomManipulation -->
         <script type="text/javascript" src="js/ui/DomManipulation.js"></script>
+
+        <!-- httpmanager -->
+        <script type="text/javascript" src="js/http/Manager.js"></script>
+
 
         <!--Notifications PLUG IN-->
         <script type="text/javascript" src="assets/js/pnotify/pnotify.custom.min.js"></script>
