@@ -15,8 +15,19 @@
     class Locations extends Database {
         const TABLE_NAME = "locations";
 
+        const
+            BUSINESS_TYPE = 'business_type',
+            LAT = 'lat',
+            LNG = 'lng',
+            AREA = 'area',
+            NAME = 'name',
+            PHONE = 'phone',
+            WEBSITE = 'website',
+            DESC = 'desc';
+
+
         // prepared statement variables
-        private $userId, $businessId, $lat, $lng, $area, $name, $desc, $phone, $website;
+        private $userId, $businessType, $lat, $lng, $area, $name, $desc, $phone, $website;
 
 
         public function __construct($mysqli = false) {
@@ -46,7 +57,7 @@
             ]);
             $this->deletePreparedStatement($table);
 
-            $this->c->bind_param("iisssssss", $this->userId, $this->businessId, $this->lat, $this->lng, $this->area, $this->name, $this->desc, $this->phone, $this->website);
+            $this->c->bind_param("iisssssss", $this->userId, $this->businessType, $this->lat, $this->lng, $this->area, $this->name, $this->desc, $this->phone, $this->website);
 
             $this->r->bind_param("i", $this->id);
             $this->u->bind_param("sssssssi", $this->lat, $this->lng, $this->area, $this->name, $this->desc, $this->phone, $this->website, $this->id);
@@ -63,15 +74,15 @@
         public function create($obj) {
             if (is_object($obj) && $obj instanceof Location) {
                 $this->clean($obj);
-                $this->userId     = $obj->getUserId();
-                $this->businessId = $obj->getBusinessId();
-                $this->lat        = $obj->getLat();
-                $this->lng        = $obj->getLng();
-                $this->area       = $obj->getArea();
-                $this->name       = $obj->getName();
-                $this->desc       = $obj->getDesc();
-                $this->phone      = $obj->getPhone();
-                $this->website    = $obj->getWebsite();
+                $this->userId       = $obj->getUserId();
+                $this->businessType = $obj->getBusinessType();
+                $this->lat          = $obj->getLat();
+                $this->lng          = $obj->getLng();
+                $this->area         = $obj->getArea();
+                $this->name         = $obj->getName();
+                $this->desc         = $obj->getDesc();
+                $this->phone        = $obj->getPhone();
+                $this->website      = $obj->getWebsite();
 
                 if ($this->c->execute()) {
                     return $this->c->insert_id;
