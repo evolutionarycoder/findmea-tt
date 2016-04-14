@@ -3352,10 +3352,6 @@ b#speed {
         width : auto !important;
     }
 
-    .dropdown-menu > li > a {
-        color : #FFF !important;
-    }
-
     .running-text {
         width   : 100% !important;
         padding : 10px 45px 0 20px !important;
