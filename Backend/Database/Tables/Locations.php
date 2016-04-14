@@ -29,7 +29,7 @@
                 "lng",
                 "area",
                 "name",
-                "desc",
+                "`desc`",
                 "phone",
                 "website"
             ]);
@@ -40,17 +40,16 @@
                 "lng",
                 "area",
                 "name",
-                "desc",
+                "`desc`",
                 "phone",
                 "website"
             ]);
             $this->deletePreparedStatement($table);
 
-
             $this->c->bind_param("iisssssss", $this->userId, $this->businessId, $this->lat, $this->lng, $this->area, $this->name, $this->desc, $this->phone, $this->website);
 
             $this->r->bind_param("i", $this->id);
-            $this->u->bind_param("sssssss", $this->lat, $this->lng, $this->area, $this->name, $this->desc, $this->phone, $this->website);
+            $this->u->bind_param("sssssssi", $this->lat, $this->lng, $this->area, $this->name, $this->desc, $this->phone, $this->website, $this->id);
 
             $this->d->bind_param("i", $this->id);
         }
