@@ -35,14 +35,15 @@
          * @param latLong.lng
          * @param {string} title
          * @param {{}}metadata
+         * @param {{}}otherOptions
          * @param {string} listenerType
          * @param {callback} callback
          */
-        addMarker : function (latLong, title, metadata, listenerType, callback) {
-            Marker(this).add(latLong, title, metadata, listenerType, callback);
+        addMarker : function (latLong, title, metadata, otherOptions, listenerType, callback) {
+            Marker(this).add(latLong, title, metadata, otherOptions, listenerType, callback);
         },
-        findMarker: function (metaProperty, value) {
-            return Marker(this).find(metaProperty, value)
+        findMarker: function (cb) {
+            return Marker(this).find(cb);
         }
     };
 
@@ -66,11 +67,16 @@
     };
 
     Marker.prototype = {
-        add : function (latLong, title, metadata, listenerType, callback) {
-            var marker = new google.maps.Marker({
+        add : function (latLong, title, metadata, otherOptions, listenerType, callback) {
+            var options = {
                 position: latLong,
                 title   : title
-            });
+            };
+
+            if (otherOptions) {
+                $.extend(options, otherOptions);
+            }
+            var marker = new google.maps.Marker(options);
 
             var markerData = metadata || {},
                 listener   = listenerType || 'click';
@@ -80,21 +86,28 @@
                 marker.addListener(listener, callback);
             }
 
+
             marker.setMap(this.GoogleMaps.map);
             this.GoogleMaps.markers.push(marker);
             return this;
         },
-        find: function (metaProperty, value) {
-            var markers        = this.GoogleMaps.markers,
-                condition      = false,
-                markerToReturn = null;
+        find: function (cb) {
+            var markers   = this.GoogleMaps.markers,
+                self      = this,
+                condition = false;
+
             iterate(markers, function (marker) {
-                if (marker[metaProperty] === value) {
-                    markerToReturn = marker;
-                    condition      = true;
-                }
+                cb.call(self, marker);
             }, condition);
-            return markerToReturn;
+
+        },
+        hide: function (marker, showingValue) {
+            marker.setMap(null);
+            marker.showing = showingValue || false;
+        },
+        show: function (marker, showingValue) {
+            marker.setMap(this.GoogleMaps.map);
+            marker.showing = showingValue || true;
         }
     };
 
