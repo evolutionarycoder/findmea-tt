@@ -453,6 +453,7 @@
         }
 
         protected function cleanString($string) {
+            $string = trim($string);
             return htmlentities(mysqli_real_escape_string($this->connection, $string), ENT_QUOTES);
         }
 
