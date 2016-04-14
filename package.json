@@ -17,8 +17,9 @@
   },
   "homepage": "https://github.com/evolutionarycoder/findmea-tt#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-ext-replace": "^0.3.0",
-    "gulp-nunjucks-render": "^2.0.0"
+    "gulp"                : "^3.9.1",
+    "gulp-ext-replace"    : "^0.3.0",
+    "gulp-nunjucks-render": "^2.0.0",
+    "gulp-prefix"         : "0.0.14"
   }
 }
