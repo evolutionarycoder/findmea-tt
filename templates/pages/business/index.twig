@@ -1,0 +1,227 @@
+{% extends "main.twig" %}
+
+{% block css %}
+    <style>
+        .paper-wrap {
+            min-height : 0;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div class="content-wrap">
+        <div class="col-lg-6">
+            <form class="well form-horizontal" action=" " method="post" id="contact_form">
+                <fieldset>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <div class=" col-md-4 btn-group">
+                            <div class="btn">
+                                Type
+                            </div>
+                            <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <!-- Dropdown Rop Right -->
+                            <ul role="menu" id="business-type" class="dropdown-menu">
+                                {% block dropdownoptions %}
+                                    {% include '_business_filters.php' %}
+                                {% endblock %}
+                            </ul>
+                        </div>
+                        <div class="col-md-8 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i id="business-type-icon"
+                                                                   class=""></i></span>
+                                <input data-id="0" name="business-type" disabled="disabled"
+                                       placeholder="Select your business type"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-12 ">Area</label>
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="area" placeholder="Area your business is located" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-12 ">Name</label>
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input name="name" placeholder="Name of your business" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-12 ">Phone #</label>
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input name="phone" placeholder="(868)555-1212" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-12 ">Website or domain name</label>
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                                <input name="website" placeholder="Website or domain name" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12 ">Business Description</label>
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                <textarea class="form-control" name="desc"
+                                          placeholder="Business Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <div class="col-md-12">
+                            <p>
+                                Your current location will be used to register this business. If this is not your place
+                                of business do not submit it.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <div class="col-md-12">
+                            <a href="#" class="btn btn-danger" data-style="zoom-in">
+                                Cancel
+                            </a>
+
+                            <a href="#" id='create' class="btn btn-success ladda-button normal" data-style="zoom-in">
+                                Create
+                            </a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <div id="map" class="min-h-580 m-t-20 m-b-40">
+
+            </div>
+        </div>
+    </div>
+    {% include '_footer.twig' %}
+{% endblock %}
+
+{% block prefix %}
+    <script>
+        prefix = window.location.origin + '/auth/';
+    </script>
+    <script>
+        var map,
+                lat,
+                lng,
+                initMap = function () {
+                    map = GMaps('#map');
+                    map.addListener('click', function (e) {
+                        var loc = {
+                            lat: e.latLng.lat(),
+                            lng: e.latLng.lng()
+                        };
+
+
+                        // a marker and remove it
+                        this.findMarker(function (marker) {
+                            if (marker['type'] === 'location') {
+                                this.hide(marker);
+                            }
+                        });
+
+
+                        // add marker to map
+                        this.addMarker(loc, 'Business is Here', {
+                            type: 'location'
+                        });
+
+                        lat = loc.lat;
+                        lng = loc.lng;
+                    });
+                    Loc(map).getAndAddLocationToMap();
+                };
+    </script>
+    {% include '_gmaps.twig' %}
+
+    <script>
+        $('#business-type li').click(function (e) {
+            e.preventDefault();
+            var element = $(this),
+                value   = element.attr('data-name'),
+                icon    = element.attr('data-type-icon'),
+                id      = element.attr('data-id');
+            $('input[name="business-type"]').val(value).attr('data-id', id).attr('style', 'color: #000 !important');
+            $('#business-type-icon').attr('class', icon);
+        });
+
+        var createBtn = $('#create');
+        createBtn.click(function (e) {
+            e.preventDefault();
+            var ladda = Ladda.create(createBtn.get(0));
+            ladda.start();
+            if (!lat || !lng) {
+                Notify('Invalid Data', 'Select a location on map').error();
+                ladda.stop();
+                ladda.remove();
+            } else {
+                var data   = {
+                        business_type: $('input[name="business-type"]').attr('data-id'),
+                        lat          : lat,
+                        lng          : lng,
+                        area         : $('input[name="area"]').val(),
+                        name         : $('input[name="name"]').val(),
+                        phone        : $('input[name="phone"]').val(),
+                        website      : $('input[name="website"]').val(),
+                        desc         : $('textarea[name="desc"]').val(),
+                        type         : 'create'
+                    },
+                    manage = HttpManager('locations/index.php');
+
+                manage.create(data, function (serverResponse) {
+                    var response = Response(serverResponse);
+                    if (response.statusOk()) {
+                        Notify('Created', 'Location has been created').success();
+
+                    } else {
+                        Notify('Error', 'Something Happened! Try again later or contact support').error();
+                    }
+                    ladda.stop();
+                    ladda.remove();
+                });
+
+            }
+        });
+    </script>
+{% endblock %}
