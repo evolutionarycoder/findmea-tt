@@ -526,33 +526,6 @@
 
                         </div>
                         <div class="col-sm-2">
-                            <div class="devider-vertical visible-lg"></div>
-                            <div class="btn-group btn-wigdet pull-right visible-lg">
-                                <div class="btn">
-                                    
-    Account
-
-                                </div>
-                                <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <!-- Dropdown Rop Right -->
-                                <ul role="menu" id="dropdown-tr" class="dropdown-menu">
-                                    
-    <li>
-        <a href="#">
-            <span class="entypo-cog margin-iconic"></span>Personal
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <span class="entypo-cog margin-iconic"></span>Business
-        </a>
-    </li>
-
-                                </ul>
-                            </div>
 
 
                         </div>
@@ -1796,6 +1769,8 @@
         <script>
             var prefix;
         </script>
+
+
         <script type="text/javascript" src="assets/js/main.js"></script>
 
         <!-- Button Styles -->
