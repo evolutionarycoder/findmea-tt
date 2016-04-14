@@ -13,7 +13,7 @@
         /**
          * @var int
          */
-        public $id, $userId, $businessId, $totalLikes, $totalComments;
+        public $id, $userId, $businessType, $totalLikes, $totalComments;
 
         /**
          * @var string
@@ -52,7 +52,7 @@
         public function __construct($id = null, $userId = null, $businessId = null, $totalLikes = null, $totalComments = null, $lat = null, $lng = null, $area = null, $name = null, $desc = null, $phone = null, $website = null, $comments = null, $tags = null) {
             $this->id            = $id;
             $this->userId        = $userId;
-            $this->businessId    = $businessId;
+            $this->businessType  = $businessId;
             $this->totalLikes    = $totalLikes;
             $this->totalComments = $totalComments;
             $this->lat           = $lat;
@@ -98,15 +98,15 @@
         /**
          * @return int
          */
-        public function getBusinessId() {
-            return $this->businessId;
+        public function getBusinessType() {
+            return $this->businessType;
         }
 
         /**
-         * @param int $businessId
+         * @param int $businessType
          */
-        public function setBusinessId($businessId) {
-            $this->businessId = $businessId;
+        public function setBusinessType($businessType) {
+            $this->businessType = $businessType;
         }
 
         
