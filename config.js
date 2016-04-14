@@ -1,18 +1,23 @@
 var templateRoot = "./templates/";
 module.exports   = {
-    pages   : {
-        site : [
+    pages    : {
+        site      : [
             templateRoot + "/pages/site/**/*.*"
         ],
-        blog : [
+        blog      : [
             templateRoot + "/pages/blog/**/*.*"
         ],
-        business: [
+        business  : [
             templateRoot + "/pages/business/**/*.*"
+        ],
+        subfolders: [
+            './auth/blog/**/*.*',
+            './auth/business/**/*.*'
         ]
     },
     templates: [
         templateRoot + "/main/",
-        templateRoot + "/partials/"
+        templateRoot + "/partials/",
+        templateRoot + "/partial_files/"
     ]
 };
