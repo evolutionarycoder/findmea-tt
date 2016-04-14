@@ -42,5 +42,5 @@ gulp.task('fix-and-render', ['render-business', 'render-blog'], function () {
         .pipe(gulp.dest('./auth/'));
 });
 
-gulp.task('render-all', ['render-blog', 'render-site'], function () {
+gulp.task('render-all', ['render-blog', 'render-site', 'render-business'], function () {
 });
