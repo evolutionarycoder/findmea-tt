@@ -28,7 +28,7 @@
         },
         getAndAddLocationToMap: function () {
             var self  = this,
-                image = global.location.origin + "/system/map/people/home-2.png";
+                image = "/system/map/people/home-2.png";
             success   = function (position) {
                 self.map.addMarker({
                     lat: position.coords.latitude,
