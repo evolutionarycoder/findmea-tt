@@ -335,7 +335,6 @@
 
                 // insert into {table} (column1, column2, column 3) values (?, ?, ?)
                 $query .= $questionMarks;
-
                 return $query;
             } else {
                 throw new \InvalidArgumentException("Not a valid table name");
