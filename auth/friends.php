@@ -1783,6 +1783,7 @@
         <script type="text/javascript" src="js/ui/DomManipulation.js"></script>
 
         <!-- httpmanager -->
+        <script type="text/javascript" src="js/http/Response.js"></script>
         <script type="text/javascript" src="js/http/Manager.js"></script>
 
 
