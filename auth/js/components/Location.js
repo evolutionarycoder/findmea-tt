@@ -22,17 +22,18 @@
          * @param {Function} error Error is passed to error callback
          * @returns {Location}
          */
-        myLocation: function (success, error) {
+        myLocation            : function (success, error) {
             geoloc.getCurrentPosition(success, error);
             return this;
         },
-        getAndAddLocationToMap : function () {
-            var self = this,
-            success = function(position){
+        getAndAddLocationToMap: function () {
+            var self  = this,
+                image = global.location.origin + "/system/map/people/home-2.png";
+            success   = function (position) {
                 self.map.addMarker({
-                    lat : position.coords.latitude,
-                    lng : position.coords.longitude
-                }, 'This Is Me!', { id : 0 });
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }, 'This Is Me!', {id: 0}, {icon: image});
             };
             geoloc.getCurrentPosition(success);
         }
@@ -45,6 +46,6 @@
 
     Location.init.prototype = Location.prototype;
 
-    window.Loc = Location;
+    global.Loc = Location;
 
 })(window);
