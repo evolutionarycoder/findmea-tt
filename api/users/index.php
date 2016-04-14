@@ -5,7 +5,6 @@
      * Date: 4/12/16
      * Time: 8:24 PM
      */
-    session_start();
     require '../../Backend/vendor/autoload.php';
 
     use Backend\Authorization\Auth;
@@ -17,6 +16,8 @@
     use Backend\ServerResponse\UserResponse;
 
     $global    = require '../global.php';
+    include $global["root_dir"] . '/Backend/session.php';
+
     $auth      = new Auth();
     $directory = new FileSystem();
     $table     = new Users();
