@@ -85,6 +85,13 @@
     {% include '_footer.twig' %}
 {% endblock %}
 
+
+{% block prefix %}
+    <script>
+        prefix = window.location.origin + '/auth/';
+    </script>
+{% endblock %}
+
 {% block js %}
     <script src="assets/js/textEditor/lib/js/wysihtml5-0.3.0.js"></script>
     <script src="assets/js/textEditor/src/bootstrap3-wysihtml5.js"></script>
