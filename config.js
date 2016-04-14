@@ -6,6 +6,9 @@ module.exports   = {
         ],
         blog : [
             templateRoot + "/pages/blog/**/*.*"
+        ],
+        business: [
+            templateRoot + "/pages/business/**/*.*"
         ]
     },
     templates: [

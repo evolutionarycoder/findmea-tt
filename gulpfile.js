@@ -23,6 +23,14 @@ gulp.task('render-blog', function () {
         .pipe(ext_replace('.php'))
         .pipe(gulp.dest('./auth/blog/'));
 });
+gulp.task('render-business', function () {
+    return gulp.src(paths.pages.business)
+        .pipe(render({
+            path: paths.templates
+        }))
+        .pipe(ext_replace('.php'))
+        .pipe(gulp.dest('./auth/business/'));
+});
 
 gulp.task('render-all', ['render-blog', 'render-site'], function () {
 });
