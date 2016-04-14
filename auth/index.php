@@ -2,8 +2,8 @@
     use Backend\Authorization\Auth;
     use Backend\Database\Tables\BusinessTypes;
 
-    session_start();
     require $_SERVER['DOCUMENT_ROOT'] . '/Backend/vendor/autoload.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/Backend/session.php';
     if (!Auth::isLoggedIn()) {
         header('Location: ' . '/');
     }
@@ -19,6 +19,8 @@
         <meta name="author" content="">
         <!-- Le styles -->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
+        <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 
@@ -627,7 +629,7 @@
                                     <?php
 
                                         function createBusinessTypeListItem($id, $name, $icon) {
-                                            echo "<li data-id='{$id}'>
+                                            echo "<li data-id='{$id}' data-name='{$name}' data-type-icon='{$icon}'>
                 <a href=\"#\">
                     <span class=\"{$icon} margin-iconic\"></span>{$name}
                 </a>
