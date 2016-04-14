@@ -19,6 +19,9 @@
                 throw new Error('No data given');
             }
             $.post(this.file, data, cb);
+        },
+        getJSON: function (data, cb) {
+            $.getJSON(this.file, data, cb);
         }
     };
 
