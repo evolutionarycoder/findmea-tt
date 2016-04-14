@@ -97,14 +97,10 @@
     DASHBOARD
 {% endblock %}
 
-
-{% block pagedropdown %}
-    Filter
-{% endblock %}
-
-
-{% block dropdownoptions %}
-    {% include '_business_filters.php' %}
+{% set name = 'Filter' %}
+{% set options = '_business_filters.php' %}
+{% block dropdown_nav %}
+    {% include '_dropdown_button_business_filters.twig' %}
 {% endblock %}
 
 
