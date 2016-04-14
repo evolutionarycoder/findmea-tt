@@ -18,36 +18,40 @@
         <meta name="author" content="">
         <!-- Le styles -->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
+        <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 
-        <link rel="stylesheet" href="assets/js/button/ladda/ladda.min.css">
+        <link rel="stylesheet" href="../assets/js/button/ladda/ladda.min.css">
 
 
         <!--Button Styles-->
-        <link rel="stylesheet" href="assets/js/button/ladda/ladda.min.css">
+        <link rel="stylesheet" href="../assets/js/button/ladda/ladda.min.css">
         <!-- Extra Pages -->
-        <link rel="stylesheet" href="assets/css/extra-pages.css">
+        <link rel="stylesheet" href="../assets/css/extra-pages.css">
 
         <!-- PNotify -->
-        <link rel="stylesheet" href="assets/css/pnotify.custom.min.css">
+        <link rel="stylesheet" href="../assets/css/pnotify.custom.min.css">
 
         <!-- Form -->
-        <link href="assets/js/iCheck/flat/all.css" rel="stylesheet">
-        <link href="assets/js/iCheck/line/all.css" rel="stylesheet">
-        <link href="assets/js/colorPicker/bootstrap-colorpicker.css" rel="stylesheet">
-        <link href="assets/js/switch/bootstrap-switch.css" rel="stylesheet">
-        <link href="assets/js/validate/validate.css" rel="stylesheet">
-        <link href="assets/js/idealform/css/jquery.idealforms.css" rel="stylesheet">
+        <link href="../assets/js/iCheck/flat/all.css" rel="stylesheet">
+        <link href="../assets/js/iCheck/line/all.css" rel="stylesheet">
+        <link href="../assets/js/colorPicker/bootstrap-colorpicker.css" rel="stylesheet">
+        <link href="../assets/js/switch/bootstrap-switch.css" rel="stylesheet">
+        <link href="../assets/js/validate/validate.css" rel="stylesheet">
+        <link href="../assets/js/idealform/css/jquery.idealforms.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/loader-style.css">
-        <link rel="stylesheet" href="assets/css/bootstrap.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/loader-style.css">
+        <link rel="stylesheet" href="../assets/css/bootstrap.css">
+
+        <link rel="stylesheet" href="../css/animate.min.css">
+        <link rel="stylesheet" href="../css/utility.css">
 
 
-        
-    <link rel="stylesheet" type="text/css" href="assets/js/textEditor/src/bootstrap-wysihtml5.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/js/tag/jquery.tagsinput.css">
+        <link rel="stylesheet" type="text/css" href="../assets/js/textEditor/src/bootstrap-wysihtml5.css">
+        <link rel="stylesheet" type="text/css" href="../assets/js/tag/jquery.tagsinput.css">
 
 
 
@@ -56,7 +60,7 @@
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <!-- Fav and touch icons -->
-        <link rel="shortcut icon" href="assets/ico/minus.png">
+        <link rel="shortcut icon" href="../assets/ico/minus.png">
     </head>
 
     <body>
@@ -525,42 +529,6 @@
 
                         </div>
                         <div class="col-sm-2">
-                            <div class="devider-vertical visible-lg"></div>
-                            <div class="btn-group btn-wigdet pull-right visible-lg">
-                                <div class="btn">
-                                    
-    Business
-
-                                </div>
-                                <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul role="menu" class="dropdown-menu">
-                                    
-    <li>
-        <a href="#">
-            <span class="entypo-plus-circled margin-iconic"></span>Restaurant
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <span class="entypo-plus-circled margin-iconic"></span>ATM
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <span class="entypo-plus-circled margin-iconic"></span>Pet Shop
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <span class="entypo-plus-circled margin-iconic"></span>Car Dealer
-        </a>
-    </li>
-
-                                </ul>
-                            </div>
 
 
                         </div>
@@ -584,7 +552,8 @@
                     <li class="pull-right">
                         <div class="input-group input-widget">
 
-                            <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
+                            <input style="border-radius:15px" type="text" id="search-map" placeholder="Search..."
+                                   class="form-control">
                         </div>
                     </li>
                 </ul>
@@ -774,25 +743,34 @@
 
 
         <!-- MAIN EFFECT -->
-        <script type="text/javascript" src="assets/js/preloader.js"></script>
-        <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-        <script type="text/javascript" src="assets/js/app.js"></script>
-        <script type="text/javascript" src="assets/js/load.js"></script>
+        <script type="text/javascript" src="../assets/js/preloader.js"></script>
+        <script type="text/javascript" src="../assets/js/bootstrap.js"></script>
+        <script type="text/javascript" src="../assets/js/app.js"></script>
+        <script type="text/javascript" src="../assets/js/load.js"></script>
         <script>
             var prefix;
         </script>
-        <script type="text/javascript" src="assets/js/main.js"></script>
+
+        <script>
+            prefix = window.location.origin + '/auth/';
+        </script>
+
+        <script type="text/javascript" src="../assets/js/main.js"></script>
 
         <!-- Button Styles -->
-        <script src="assets/js/button/ladda/spin.min.js"></script>
-        <script src="assets/js/button/ladda/ladda.min.js"></script>
+        <script src="../assets/js/button/ladda/spin.min.js"></script>
+        <script src="../assets/js/button/ladda/ladda.min.js"></script>
 
         <!-- DomManipulation -->
-        <script type="text/javascript" src="js/ui/DomManipulation.js"></script>
+        <script type="text/javascript" src="../js/ui/DomManipulation.js"></script>
+
+        <!-- httpmanager -->
+        <script type="text/javascript" src="../js/http/Manager.js"></script>
+
 
         <!--Notifications PLUG IN-->
-        <script type="text/javascript" src="assets/js/pnotify/pnotify.custom.min.js"></script>
-        <script type="text/javascript" src="js/ui/Notify.js"></script>
+        <script type="text/javascript" src="../assets/js/pnotify/pnotify.custom.min.js"></script>
+        <script type="text/javascript" src="../js/ui/Notify.js"></script>
         <script>
             // enable tooltips
             $('.tooltip-me').tooltip();
@@ -808,8 +786,8 @@
 
         <!-- Form Styles -->
         <!-- /MAIN EFFECT -->
-        <script type="text/javascript" src="assets/js/iCheck/jquery.icheck.js"></script>
-        <script type="text/javascript" src="assets/js/switch/bootstrap-switch.js"></script>
+        <script type="text/javascript" src="../assets/js/iCheck/jquery.icheck.js"></script>
+        <script type="text/javascript" src="../assets/js/switch/bootstrap-switch.js"></script>
         <script>
             $(document).ready(function() {
                 //CHECKBOX PRETTYFY
@@ -835,16 +813,16 @@
             });
         </script>
 
-        
-    <script src="assets/js/textEditor/lib/js/wysihtml5-0.3.0.js"></script>
-    <script src="assets/js/textEditor/src/bootstrap3-wysihtml5.js"></script>
+
+        <script src="../assets/js/textEditor/lib/js/wysihtml5-0.3.0.js"></script>
+        <script src="../assets/js/textEditor/src/bootstrap3-wysihtml5.js"></script>
     <script>
         $('.textarea').wysihtml5();
     </script>
 
     <!-- Tags -->
 
-    <script type="text/javascript" src="assets/js/tag/jquery.tagsinput.js"></script>
+        <script type="text/javascript" src="../assets/js/tag/jquery.tagsinput.js"></script>
     <script>
         $('#tags_1').tagsInput({
             width: 'auto'
