@@ -267,6 +267,10 @@
             if (is_null($last)) {
                 $query = "SELECT * FROM {$table} WHERE {$where} ORDER BY id DESC LIMIT 20";
             }
+
+            if (is_null($last) && is_null($where)) {
+                $query = "SELECT * FROM {$table} ORDER BY id DESC LIMIT 20";
+            }
             $result = mysqli_query($this->connection, $query);
 
             $data = [];
