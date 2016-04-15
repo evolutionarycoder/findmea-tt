@@ -14,6 +14,20 @@
             }
             $.post(this.file, data, cb);
         },
+        update : function (data, cb) {
+            data.type = "update";
+            if (!data) {
+                throw new Error('No data given');
+            }
+            $.post(this.file, data, cb);
+        },
+        delete : function (data, cb) {
+            data.type = "delete";
+            if (!data) {
+                throw new Error('No data given');
+            }
+            $.post(this.file, data, cb);
+        },
         request: function (data, cb) {
             if (!data) {
                 throw new Error('No data given');
