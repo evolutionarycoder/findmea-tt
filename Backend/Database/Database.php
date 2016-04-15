@@ -152,7 +152,7 @@
          */
         public function strip($obj) {
             foreach ($obj as $key => $val) {
-                if (!is_object($val)) {
+                if (!is_object($val) && !is_array($val)) {
                     $obj->$key = stripcslashes($val);
                 }
             }
@@ -190,6 +190,14 @@
             }
 
             return false;
+        }
+
+        public function encode($obj) {
+            foreach ($obj as $key => $val) {
+                if (!is_object($val) && !is_array($val)) {
+                    $obj->$key = htmlspecialchars($val, ENT_QUOTES);
+                }
+            }
         }
 
         protected function totalRowsInTable($table, $where) {
