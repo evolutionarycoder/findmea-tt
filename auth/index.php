@@ -630,7 +630,11 @@
             </li>";
                                         }
 
-                                        $table        = new BusinessTypes();
+                                        $connection = false;
+                                        if (isset($table)) {
+                                            $connection = $table->getConnection();
+                                        }
+                                        $table        = new BusinessTypes($connection);
                                         $businessData = $table->readAll();
                                         createBusinessTypeListItem(0, 'All', 'entypo-plus-circled');
                                         for ($i = 0; $i < count($businessData); $i++) {
