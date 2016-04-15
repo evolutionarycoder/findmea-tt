@@ -47,8 +47,6 @@
 
             $this->readPreparedStatement($table);
             $this->updatePreparedStatement($table, [
-                "lat",
-                "lng",
                 "area",
                 "name",
                 "`desc`",
@@ -60,7 +58,7 @@
             $this->c->bind_param("iisssssss", $this->userId, $this->businessType, $this->lat, $this->lng, $this->area, $this->name, $this->desc, $this->phone, $this->website);
 
             $this->r->bind_param("i", $this->id);
-            $this->u->bind_param("sssssssi", $this->lat, $this->lng, $this->area, $this->name, $this->desc, $this->phone, $this->website, $this->id);
+            $this->u->bind_param("sssssi", $this->area, $this->name, $this->desc, $this->phone, $this->website, $this->id);
 
             $this->d->bind_param("i", $this->id);
         }
@@ -126,8 +124,6 @@
                 $this->clean($obj);
                 $old = $this->read($obj->getId());
                 if (!is_bool($old)) {
-                    $this->lat     = $this->isNull($obj->getLat(), $old->getLat());
-                    $this->lng     = $this->isNull($obj->getLng(), $old->getLng());
                     $this->area    = $this->isNull($obj->getArea(), $old->getArea());
                     $this->name    = $this->isNull($obj->getName(), $old->getName());
                     $this->desc    = $this->isNull($obj->getDesc(), $old->getDesc());
@@ -146,7 +142,7 @@
         /**
          * @param $id
          *
-         * @return bool|Location
+         * @return bool|Location false on failure Location on success
          */
         public function read($id) {
             return parent::read($id);
