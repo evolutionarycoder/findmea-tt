@@ -16,8 +16,8 @@
 
     $global = require '../global.php';
     include $global["root_dir"] . '/Backend/session.php';
-    
-    $table  = new Locations();
+
+    $table = new Locations();
     if (isset($_GET['type'])) {
         $type = trim($_GET[Database::ACTION_TYPE]);
         if ($type === "fetch") {
@@ -54,5 +54,48 @@
                 $response->allGood();
             }
         }
+
+        if ($type === 'delete') {
+            $locationID = $_POST['id'];
+            if (is_numeric($locationID)) {
+                $location = $table->read($locationID);
+                if (!is_bool($location)) {
+                    // means location is there
+                    // check is location belongs to user
+                    $userId = (int)$location->getUserId();
+                    if (Auth::USER_ID() === $userId) {
+                        // correct user issued delete
+                        if ($table->delete($locationID)) {
+                            $response->allGood();
+                        }
+                    }
+                }
+            }
+        }
+
+        if ($type === 'update') {
+            $locationID = $_POST['id'];
+            if (is_numeric($locationID)) {
+                $location = $table->read($locationID);
+                $area     = $_POST[Locations::AREA];
+                $name     = $_POST[Locations::NAME];
+                $phone    = $_POST[Locations::PHONE];
+                $website  = $_POST[Locations::WEBSITE];
+                $desc     = $_POST[Locations::DESC];
+                if (!is_bool($location)) {
+                    // means location is there
+                    // check is location belongs to user
+                    $userId = (int)$location->getUserId();
+                    if (Auth::USER_ID() === $userId) {
+                        $obj = new Location($locationID, null, null, null, null, null, null, $area, $name, $desc, $phone, $website);
+                        // correct user issued delete
+                        if ($table->update($obj)) {
+                            $response->allGood();
+                        }
+                    }
+                }
+            }
+        }
+
         echo $response->makeMeJson();
     }
