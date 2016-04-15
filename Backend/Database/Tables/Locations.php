@@ -96,10 +96,22 @@
             return parent::readAllRows(self::TABLE_NAME);
         }
 
+        /**
+         * @param        $start
+         * @param string $where
+         *
+         * @return Location[]
+         */
         public function readByLimitAsc($start, $where = "") {
             return parent::readByAmountAsc(self::TABLE_NAME, $start, $where);
         }
 
+        /**
+         * @param        $last
+         * @param string $where
+         *
+         * @return Location[]
+         */
         public function readByLimitDesc($last, $where = "") {
             return parent::readByAmountDesc(self::TABLE_NAME, $last, $where);
         }
