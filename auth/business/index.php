@@ -589,7 +589,11 @@
             </li>";
                                                 }
 
-                                                $table        = new BusinessTypes();
+                                                $connection = false;
+                                                if (isset($table)) {
+                                                    $connection = $table->getConnection();
+                                                }
+                                                $table        = new BusinessTypes($connection);
                                                 $businessData = $table->readAll();
                                                 createBusinessTypeListItem(0, 'All', 'entypo-plus-circled');
                                                 for ($i = 0; $i < count($businessData); $i++) {
@@ -678,7 +682,7 @@
                                           placeholder="Business Description"></textarea>
                                         </div>
                                     </div>
-                                </div>
+                    </div>
 
                                 <div class="form-group text-center">
                                     <div class="col-md-12">
@@ -687,7 +691,7 @@
                                             your place
                                             of business do not submit it.
                                         </p>
-                                    </div>
+                        </div>
                     </div>
                                 <div class="form-group text-center">
                                     <div class="col-md-12">
@@ -847,6 +851,67 @@
         <script>
             prefix = window.location.origin + '/auth/';
         </script>
+
+        <script type="text/javascript" src="../assets/js/main.js"></script>
+
+        <!-- Button Styles -->
+        <script src="../assets/js/button/ladda/spin.min.js"></script>
+        <script src="../assets/js/button/ladda/ladda.min.js"></script>
+
+        <!-- DomManipulation -->
+        <script type="text/javascript" src="../js/ui/DomManipulation.js"></script>
+
+        <!-- httpmanager -->
+        <script type="text/javascript" src="../js/http/Response.js"></script>
+        <script type="text/javascript" src="../js/http/Manager.js"></script>
+
+
+        <!--Notifications PLUG IN-->
+        <script type="text/javascript" src="../assets/js/pnotify/pnotify.custom.min.js"></script>
+        <script type="text/javascript" src="../js/ui/Notify.js"></script>
+        <script>
+            // enable tooltips
+            $('.tooltip-me').tooltip();
+
+            // get users location
+            // get location
+            $.getJSON('http://ipinfo.io', function (data) {
+                $('.country').text(data['country']);
+                $('.city').text(data['city']);
+                $('.region').text(data['region']);
+            });
+        </script>
+
+        <!-- Form Styles -->
+        <!-- /MAIN EFFECT -->
+        <script type="text/javascript" src="../assets/js/iCheck/jquery.icheck.js"></script>
+        <script type="text/javascript" src="../assets/js/switch/bootstrap-switch.js"></script>
+        <script>
+            $(document).ready(function () {
+                //CHECKBOX PRETTYFY
+                $('.skin-flat input').iCheck({
+                    checkboxClass: 'icheckbox_flat-red',
+                    radioClass   : 'iradio_flat-red'
+                });
+                $('.skin-line input').each(function () {
+                    var self       = $(this),
+                        label      = self.next(),
+                        label_text = label.text();
+
+                    label.remove();
+                    self.iCheck({
+                        checkboxClass: 'icheckbox_line-blue',
+                        radioClass   : 'iradio_line-blue',
+                        insert       : '<div class="icheck_line-icon"></div>' + label_text
+                    });
+                });
+                //Switch Button
+
+                $('.make-switch').bootstrapSwitch('setSizeClass', 'switch-small');
+            });
+        </script>
+
+
         <script>
             var map,
                 lat,
@@ -916,8 +981,7 @@
                             name         : $('input[name="name"]').val(),
                             phone        : $('input[name="phone"]').val(),
                             website      : $('input[name="website"]').val(),
-                            desc         : $('textarea[name="desc"]').val(),
-                            type         : 'create'
+                            desc         : $('textarea[name="desc"]').val()
                         },
                         manage = HttpManager('locations/index.php');
 
@@ -929,70 +993,11 @@
                         } else {
                             Notify('Error', 'Something Happened! Try again later or contact support').error();
                         }
-                    ladda.stop();
-                    ladda.remove();
+                        ladda.stop();
+                        ladda.remove();
                     });
 
                 }
-            });
-        </script>
-
-        <script type="text/javascript" src="../assets/js/main.js"></script>
-
-        <!-- Button Styles -->
-        <script src="../assets/js/button/ladda/spin.min.js"></script>
-        <script src="../assets/js/button/ladda/ladda.min.js"></script>
-
-        <!-- DomManipulation -->
-        <script type="text/javascript" src="../js/ui/DomManipulation.js"></script>
-
-        <!-- httpmanager -->
-        <script type="text/javascript" src="../js/http/Response.js"></script>
-        <script type="text/javascript" src="../js/http/Manager.js"></script>
-
-
-        <!--Notifications PLUG IN-->
-        <script type="text/javascript" src="../assets/js/pnotify/pnotify.custom.min.js"></script>
-        <script type="text/javascript" src="../js/ui/Notify.js"></script>
-        <script>
-            // enable tooltips
-            $('.tooltip-me').tooltip();
-
-            // get users location
-            // get location
-            $.getJSON('http://ipinfo.io', function (data) {
-                $('.country').text(data['country']);
-                $('.city').text(data['city']);
-                $('.region').text(data['region']);
-            });
-        </script>
-
-        <!-- Form Styles -->
-        <!-- /MAIN EFFECT -->
-        <script type="text/javascript" src="../assets/js/iCheck/jquery.icheck.js"></script>
-        <script type="text/javascript" src="../assets/js/switch/bootstrap-switch.js"></script>
-        <script>
-            $(document).ready(function () {
-                //CHECKBOX PRETTYFY
-                $('.skin-flat input').iCheck({
-                    checkboxClass: 'icheckbox_flat-red',
-                    radioClass   : 'iradio_flat-red'
-                });
-                $('.skin-line input').each(function () {
-                    var self       = $(this),
-                        label      = self.next(),
-                        label_text = label.text();
-
-                    label.remove();
-                    self.iCheck({
-                        checkboxClass: 'icheckbox_line-blue',
-                        radioClass   : 'iradio_line-blue',
-                        insert       : '<div class="icheck_line-icon"></div>' + label_text
-                    });
-                });
-                //Switch Button
-
-                $('.make-switch').bootstrapSwitch('setSizeClass', 'switch-small');
             });
         </script>
 
