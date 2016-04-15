@@ -47,6 +47,23 @@
             $this->photo           = $photo;
         }
 
+        public function getFullName() {
+            return $this->getFname() . ' ' . $this->getLname();
+        }
+
+        /**
+         * @return string
+         */
+        public function getFname() {
+            return $this->fname;
+        }
+
+        /**
+         * @return string
+         */
+        public function getLname() {
+            return $this->lname;
+        }
 
         /**
          * @return int
@@ -105,24 +122,10 @@
         }
 
         /**
-         * @return string
-         */
-        public function getFname() {
-            return $this->fname;
-        }
-
-        /**
          * @param string $fname
          */
         public function setFname($fname) {
             $this->fname = $fname;
-        }
-
-        /**
-         * @return string
-         */
-        public function getLname() {
-            return $this->lname;
         }
 
         /**
