@@ -141,6 +141,10 @@
     <script>
         prefix = window.location.origin + '/auth/';
     </script>
+{% endblock %}
+
+{% block js %}
+
     <script>
         var map,
                 lat,
@@ -204,8 +208,7 @@
                         name         : $('input[name="name"]').val(),
                         phone        : $('input[name="phone"]').val(),
                         website      : $('input[name="website"]').val(),
-                        desc         : $('textarea[name="desc"]').val(),
-                        type         : 'create'
+                        desc         : $('textarea[name="desc"]').val()
                     },
                     manage = HttpManager('locations/index.php');
 
