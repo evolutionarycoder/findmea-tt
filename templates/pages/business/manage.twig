@@ -1,0 +1,292 @@
+{% extends "main.twig" %}
+
+{% block css %}
+    <link href="assets/js/footable/css/footable.core.css?v=2-0-1" rel="stylesheet" type="text/css"/>
+    <link href="assets/js/footable/css/footable.standalone.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/js/footable/css/footable-demos.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="stylesheet" href="assets/js/dataTable/lib/jquery.dataTables/css/DT_bootstrap.css"/>
+    <link rel="stylesheet" href="assets/js/dataTable/css/datatables.responsive.css"/>
+
+    <style>
+        #footable-res2 tr {
+            cursor : pointer;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="content-wrap">
+        <div class="row" style="background: #FFF">
+            <div class="col-lg-8">
+                <div class="nest" id="FilteringClose">
+                    <div class="title-alt">
+                        <h6>Business Manager</h6>
+                    </div>
+
+                    <div class="body-nest" id="Filtering">
+
+                        <div class="row" style="margin-bottom:10px;">
+                            <div class="col-sm-4">
+                                <input class="form-control" id="filter" placeholder="Search..." type="text"/>
+                            </div>
+                            <div class="col-sm-2">
+                                <select class="filter-status form-control">
+                                    <option value="active">Active</option>
+                                    <option value="disabled">Disabled</option>
+                                    <option value="suspended">Suspended</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <a id='delete' href="#" style="margin-left:10px;"
+                                   data-style="zoom-in"
+                                   class="pull-right btn btn-info ladda-button normal">Delete</a>
+                                <a href="#" style="margin-left:10px;"
+                                   class="pull-right btn btn-info">Edit</a>
+                            </div>
+                        </div>
+
+                        <table id="footable-res2" class="demo" data-filter="#filter" data-filter-text-only="true">
+                            <thead>
+                                <tr>
+                                    <th data-toggle="true">
+                                        Area
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Phone
+                                    </th>
+                                    <th>
+                                        Website
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% include '_fetch_busineses_table.php' %}
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="col-lg-4 m-t-30">
+                <form class="well form-horizontal" action=" " method="post" id="contact_form">
+                    <fieldset>
+                        <!-- Text input-->
+
+                        <div class="form-group">
+                            <label class="col-md-12 ">Area</label>
+                            <div class="col-md-12 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input name="area" placeholder="Area your business is located" class="form-control"
+                                           type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-12 ">Name</label>
+                            <div class="col-md-12 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input name="name" placeholder="Name of your business" class="form-control"
+                                           type="text">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Text input-->
+
+                        <div class="form-group">
+                            <label class="col-md-12 ">Phone #</label>
+                            <div class="col-md-12 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                    <input name="phone" placeholder="(868)555-1212" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-12 ">Website or domain name</label>
+                            <div class="col-md-12 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                                    <input name="website" placeholder="Website or domain name" class="form-control"
+                                           type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-12 ">Business Description</label>
+                            <div class="col-md-12 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                <textarea class="form-control" name="desc"
+                                          placeholder="Business Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <div class="col-md-12">
+                                <p>
+                                    Your current location will be used to register this business. If this is not your
+                                    place
+                                    of business do not submit it.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <div class="col-md-12">
+                                <a href="#" id='save' class="btn btn-success ladda-button normal"
+                                   data-style="zoom-in">
+                                    Save
+                                </a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% include '_footer.twig' %}
+{% endblock %}
+
+{% block prefix %}
+    <script>
+        prefix = window.location.origin + '/auth/';
+    </script>
+{% endblock %}
+
+
+
+{% block js %}
+    <script type="text/javascript" src="assets/js/toggle_close.js"></script>
+    <script src="assets/js/footable/js/footable.js?v=2-0-1" type="text/javascript"></script>
+    <script src="assets/js/footable/js/footable.sort.js?v=2-0-1" type="text/javascript"></script>
+    <script src="assets/js/footable/js/footable.filter.js?v=2-0-1" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#footable-res2').footable().bind('footable_filtering', function (e) {
+                var selected = $('.filter-status').find(':selected').text();
+                if (selected && selected.length > 0) {
+                    e.filter += (e.filter && e.filter.length > 0) ? ' ' + selected : selected;
+                    e.clear = !e.filter;
+                }
+            });
+
+            $('.filter-status').change(function (e) {
+                e.preventDefault();
+                $('table.demo').trigger('footable_filter', {
+                    filter: $('#filter').val()
+                });
+            });
+        });
+
+
+        var tableRows = $('#footable-res2 tr'),
+                id = 0;
+        tableRows.click(function (e) {
+            e.preventDefault();
+            tableRows.each(function (index, elem) {
+                elem.style.backgroundColor = '#ffffff';
+            });
+            var element = $(this);
+            element.css('background-color', '#E1F8FA');
+
+            id = element.attr('data-id');
+
+
+            $('input[name="area"]').val(element.attr('data-area'));
+            $('input[name="name"]').val(element.attr('data-name'));
+            $('input[name="phone"]').val(element.attr('data-phone'));
+            $('input[name="website"]').val(element.attr('data-website'));
+            $('textarea[name="desc"]').val(element.attr('data-desc'));
+        });
+
+
+        $('#delete').click(function (e) {
+            e.preventDefault();
+            var ladda = Ladda.create(document.querySelector('#delete'));
+            ladda.start();
+            if ($.isNumeric(id)) {
+                var data   = {
+                        id: id
+                    },
+                    manage = HttpManager('locations/index.php');
+
+                manage.delete(data, function (serverResponse) {
+                    var r = Response(serverResponse);
+                    if (r.statusOk()) {
+                        Notify('Deleted', 'Delete Successful').success();
+                        $('tr[data-id=' + id + ']').remove();
+                    } else {
+                        Notify('Error', 'An error occurred').success();
+                    }
+                    ladda.stop();
+                    ladda.remove();
+                });
+            } else {
+                Notify('That\'s A NO NO!', 'Why did you do that?').error();
+                Dom.delay(5000, function () {
+                    window.location.reload();
+                });
+            }
+        });
+
+
+        var save = $('#save');
+        save.click(function (e) {
+            e.preventDefault();
+            var ladda = Ladda.create(save.get(0));
+            ladda.start();
+
+            var data   = {
+                    id     : id,
+                    area   : $('input[name="area"]').val(),
+                    name   : $('input[name="name"]').val(),
+                    phone  : $('input[name="phone"]').val(),
+                    website: $('input[name="website"]').val(),
+                    desc   : $('textarea[name="desc"]').val()
+                },
+                manage = HttpManager('locations/index.php');
+
+            manage.update(data, function (serverResponse) {
+                var response = Response(serverResponse);
+                if (response.statusOk()) {
+                    Notify('Updated', 'Location has been updated').success();
+
+                } else {
+                    Notify('Error', 'Something Happened! Try again later or contact support').error();
+                }
+                ladda.stop();
+                ladda.remove();
+            });
+
+
+        });
+    </script>
+{% endblock %}
